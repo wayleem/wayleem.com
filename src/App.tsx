@@ -1,13 +1,11 @@
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import Layout from './layouts/Layout'
+
 function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="*" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="Dashboard" element={<Dashboard />} />
-          <Route path="PreConfiguredJobs" element={<PreConfiguredJobs />} />
-          <Route path="DataUtilities" element={<DataUtilities />} />
-        </Route>
+        <Route path="*" element={<Layout />}></Route>
       </Routes>
     </HashRouter>
   )
