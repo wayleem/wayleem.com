@@ -6,10 +6,14 @@ export default {
   daisyui: {
     themes: [
       {
-        light: {},
+        light: {
+          neutral: '#fefefe',
+        },
       },
       {
-        dark: {},
+        dark: {
+          neutral: '#0c0c0D',
+        },
       },
     ],
   },
