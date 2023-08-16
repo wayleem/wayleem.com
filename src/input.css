@@ -5,3 +5,23 @@
 #root {
   @apply w-screen h-screen;
 }
+
+.h1 {
+  @apply text-6xl font-header text-readable tracking-wide;
+}
+
+.body {
+  @apply text-xl font-body text-readable tracking-wide ml-16;
+}
+
+.subtitle-text {
+  @apply text-xl font-subtitle text-readable tracking-wide;
+}
+
+.float-text-lg {
+  @apply absolute font-subtitle text-8xl text-base-100 opacity-30;
+}
+
+.float-text-sm {
+  @apply absolute font-subtitle text-4xl text-base-content;
+}

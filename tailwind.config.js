@@ -7,18 +7,30 @@ export default {
     themes: [
       {
         light: {
-          neutral: '#fefefe',
+          neutral: '#FEF0EB',
+          '.text-readable': { color: '#59453e' },
+
+          'base-content': '#59453e',
+          'base-100': '#2e2522',
         },
       },
       {
         dark: {
-          neutral: '#0c0c0D',
+          neutral: '#2e2522',
+          '.text-readable': { color: '#fefefe' },
+
+          'base-content': '#fefefe',
+          'base-100': '#f2eae6',
         },
       },
     ],
   },
   theme: {
-    fontFamily: {},
+    fontFamily: {
+      header: ['Comfortaa', 'sans-serif'],
+      subtitle: ['Quicksand', 'sans-serif'],
+      body: ['Inter', 'sans-serif'],
+    },
   },
   plugins: [daisyui],
 }
