@@ -23,5 +23,5 @@
 }
 
 .float-text-sm {
-  @apply absolute font-subtitle text-4xl text-base-content;
+  @apply absolute font-subtitle text-4xl text-base-content hover:text-base-100 pointer-events-auto w-[10%];
 }

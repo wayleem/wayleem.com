@@ -26,9 +26,9 @@ function About() {
           that I am new to.
         </h2>
         <h2 className="body mt-8 w-[35%]">
-          I am experienced in Front-End development and Game development. I am
-          always open to go outside my comfort zone and pick up new experiences
-          to broaden my horizons.
+          Given my experience, I have dealt with Front-End development and Game
+          development. I am always open to go outside my comfort zone and pick
+          up new experiences to broaden my horizons.
         </h2>
       </div>
       <h3 className="float-text-lg right-[30%] top-[5%]">Front-End;</h3>
