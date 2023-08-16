@@ -21,7 +21,7 @@ function CubeScene() {
   })
 
   const highlight_material = new MeshBasicMaterial({
-    color: 'hotpink',
+    color: '#ff9a73',
     side: DoubleSide,
     wireframe: false,
   })
@@ -36,20 +36,16 @@ function CubeScene() {
       case 'dark':
         setTheme('dark')
         break
-      case 'home':
-        console.log('home')
-        navigate('/home')
+      case 'about':
+        navigate('/about')
         break
       case 'skills':
-        console.log('skills')
         navigate('/skills')
         break
       case 'projects':
-        console.log('projects')
         navigate('/projects')
         break
       case 'contact':
-        console.log('contact')
         navigate('/contact')
         break
     }
@@ -71,7 +67,7 @@ function CubeScene() {
     rotation?: [number, number, number]
   }
   const meshes: MeshData[] = [
-    { name: 'home', position: [0, 0, 0.5] },
+    { name: 'about', position: [0, 0, 0.5] },
     { name: 'projects', position: [0, 0, -0.5] },
     { name: 'skills', position: [0.5, 0, 0], rotation: [0, Math.PI / 2, 0] },
     { name: 'contact', position: [-0.5, 0, 0], rotation: [0, Math.PI / 2, 0] },
