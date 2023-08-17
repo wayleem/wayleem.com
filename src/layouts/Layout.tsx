@@ -9,7 +9,7 @@ function Layout() {
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <CubeScene />
       </div>
-      <div className="absolute p-10 left-0 top-0 w-full h-full z-20 pointer-events-none">
+      <div className="absolute left-0 top-0 w-full h-full z-20 pointer-events-none">
         <Outlet />
       </div>
       <div className="flex flex-row absolute right-0 top-0 z-20 mt-4 mr-4">
