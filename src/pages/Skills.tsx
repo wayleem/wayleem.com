@@ -149,13 +149,22 @@ function Skills() {
     setSelectedCategory(category)
 
   const toggleVisibility = (key?: SkillKeys) => {
-    setVisibility((prevVisibility) =>
-      key
-        ? { ...prevVisibility, [key]: !prevVisibility[key] }
-        : (Object.fromEntries(
-            SKILL_KEYS.map((k) => [k, !prevVisibility[k]])
-          ) as Record<SkillKeys, boolean>)
-    )
+    if (key) {
+      // Toggle individual visibility
+      setVisibility((prevVisibility) => ({
+        ...prevVisibility,
+        [key]: !prevVisibility[key],
+      }))
+    } else {
+      // Toggle all visibility
+      const targetState = !Object.values(visibility).every((v) => v)
+      setVisibility(
+        Object.fromEntries(SKILL_KEYS.map((k) => [k, targetState])) as Record<
+          SkillKeys,
+          boolean
+        >
+      )
+    }
   }
 
   function SkillItem(props: Skill) {
