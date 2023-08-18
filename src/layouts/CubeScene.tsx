@@ -3,6 +3,9 @@ import { OrbitControls } from '@react-three/drei'
 import { PlaneGeometry, MeshBasicMaterial, Mesh, DoubleSide } from 'three'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import switchOnMP3 from '../assets/switch-on.mp3'
+import switchOffMP3 from '../assets/switch-off.mp3'
+import clickMP3 from '../assets/click.mp3'
 
 function CubeScene() {
   const [theme, setTheme] = useState('light')
@@ -28,36 +31,49 @@ function CubeScene() {
 
   const navigate = useNavigate()
   function _onClick(e: ThreeEvent<MouseEvent>) {
+    const switchOn = new Audio(switchOnMP3)
+    const switchOff = new Audio(switchOffMP3)
+    const click = new Audio(clickMP3)
+
     e.stopPropagation()
+
     switch (e.object.name) {
       case 'light':
         setTheme('light')
+        switchOn.play()
         break
       case 'dark':
         setTheme('dark')
+        switchOff.play()
         break
       case 'about':
         navigate('/about')
+        click.play()
         break
       case 'skills':
         navigate('/skills')
+        click.play()
         break
-      case 'projects':
-        navigate('/projects')
+      case 'experience':
+        navigate('/experience')
+        click.play()
         break
       case 'contact':
         navigate('/contact')
+        click.play()
         break
     }
   }
 
   function _onPointerEnter(e: ThreeEvent<MouseEvent>, mesh: Mesh) {
     e.stopPropagation()
+    document.documentElement.style.cursor = 'pointer'
     mesh.material = highlight_material
   }
 
   function _onPointerLeave(e: ThreeEvent<MouseEvent>, mesh: Mesh) {
     e.stopPropagation()
+    document.documentElement.style.cursor = 'auto'
     mesh.material = default_material
   }
 
@@ -68,7 +84,7 @@ function CubeScene() {
   }
   const meshes: MeshData[] = [
     { name: 'about', position: [0, 0, 0.5] },
-    { name: 'projects', position: [0, 0, -0.5] },
+    { name: 'experience', position: [0, 0, -0.5] },
     { name: 'skills', position: [0.5, 0, 0], rotation: [0, Math.PI / 2, 0] },
     { name: 'contact', position: [-0.5, 0, 0], rotation: [0, Math.PI / 2, 0] },
     { name: 'light', position: [0, 0.5, 0], rotation: [Math.PI / 2, 0, 0] },
