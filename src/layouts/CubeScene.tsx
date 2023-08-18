@@ -3,9 +3,9 @@ import { OrbitControls } from '@react-three/drei'
 import { PlaneGeometry, MeshBasicMaterial, Mesh, DoubleSide } from 'three'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import switchOnMP3 from '../assets/switch-on.mp3'
-import switchOffMP3 from '../assets/switch-off.mp3'
-import clickMP3 from '../assets/click.mp3'
+import switchOnMP3 from '../assets/audio/switch-on.mp3'
+import switchOffMP3 from '../assets/audio/switch-off.mp3'
+import clickMP3 from '../assets/audio/click.mp3'
 
 function CubeScene() {
   const [theme, setTheme] = useState('light')
@@ -40,27 +40,23 @@ function CubeScene() {
     switch (e.object.name) {
       case 'light':
         setTheme('light')
-        switchOn.play()
+        if (theme !== e.object.name) switchOn.play()
         break
       case 'dark':
         setTheme('dark')
-        switchOff.play()
+        if (theme !== e.object.name) switchOff.play()
         break
       case 'about':
         navigate('/about')
-        click.play()
         break
       case 'skills':
         navigate('/skills')
-        click.play()
         break
       case 'experience':
         navigate('/experience')
-        click.play()
         break
       case 'contact':
         navigate('/contact')
-        click.play()
         break
     }
   }

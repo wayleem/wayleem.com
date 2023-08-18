@@ -1,6 +1,19 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import popMP3 from '../assets/pop.mp3'
+import typescriptSVG from '../assets/icons/typescript.svg'
+import javascriptSVG from '../assets/icons/javascript.svg'
+import javaSVG from '../assets/icons/java.svg'
+import cSVG from '../assets/icons/c.svg'
+import pythonSVG from '../assets/icons/python.svg'
+import htmlSVG from '../assets/icons/html.svg'
+import reactSVG from '../assets/icons/reactjs.svg'
+import reduxSVG from '../assets/icons/reduxjs.svg'
+import gitSVG from '../assets/icons/git.svg'
+import nodeSVG from '../assets/icons/nodejs.svg'
+import tailwindSVG from '../assets/icons/tailwindcss.svg'
+import threeSVG from '../assets/icons/three.svg'
+import blenderSVG from '../assets/icons/blender.svg'
+import popMP3 from '../assets/audio/pop.mp3'
 
 type SkillKeys = (typeof SKILL_KEYS)[number]
 type CategoryKeys = 'languages' | 'frameworks' | 'other'
@@ -24,6 +37,7 @@ const SKILL_KEYS = [
 interface Skill {
   skillKey: SkillKeys
   name: string
+  icon: string
   type: string
   description: {
     year: string
@@ -37,6 +51,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'typescript',
       name: 'typescript',
+      icon: typescriptSVG,
       type: 'language',
       description: { experience: 'main choice of language', year: '4+ years' },
       position: 'left-[15%] top-[20%]',
@@ -44,6 +59,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'javascript',
       name: 'javascript',
+      icon: javascriptSVG,
       type: 'language',
       description: {
         year: '4+ years',
@@ -55,6 +71,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'html_css',
       name: 'html+css',
+      icon: htmlSVG,
       type: 'markup',
       description: {
         year: '4+ years',
@@ -65,6 +82,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'java',
       name: 'java',
+      icon: javaSVG,
       type: 'language',
       description: {
         year: '5+ years',
@@ -76,6 +94,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'c',
       name: 'c',
+      icon: cSVG,
       type: 'language',
       description: {
         year: '1+ years',
@@ -86,6 +105,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'python',
       name: 'python',
+      icon: pythonSVG,
       type: 'language',
       description: {
         experience: 'introductory language and used in course data assignments',
@@ -99,6 +119,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'nodejs',
       name: 'nodejs',
+      icon: nodeSVG,
       type: 'environment',
       description: {
         experience: 'experience ranges through all my js/ts projects',
@@ -109,6 +130,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'reactjs',
       name: 'reactjs',
+      icon: reactSVG,
       type: 'framework',
       description: {
         year: '4+ years',
@@ -119,6 +141,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'tailwindcss',
       name: 'tailwindcss',
+      icon: tailwindSVG,
       type: 'framework',
       description: {
         year: '2+ years',
@@ -129,6 +152,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'threejs',
       name: 'threejs',
+      icon: threeSVG,
       type: 'framework',
       description: {
         year: '1+ years',
@@ -139,6 +163,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'reduxjs',
       name: 'reduxjs',
+      icon: reduxSVG,
       type: 'framework',
       description: {
         year: '4+ years',
@@ -152,6 +177,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'git',
       name: 'git',
+      icon: gitSVG,
       type: 'software',
       description: {
         year: '4+ years',
@@ -163,6 +189,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
     {
       skillKey: 'blender',
       name: 'blender',
+      icon: blenderSVG,
       type: 'software',
       description: {
         year: '1+ years',
@@ -194,11 +221,12 @@ function Skills() {
   function SkillItem(props: Skill) {
     return (
       <li className={`float-text-sm ${props.position}`}>
-        <h2 className="w-fit transform transition-all hover:scale-125">
-          {props.name}
-        </h2>
-        <h3 className="text-sm">{props.type}</h3>
-        <p className="ml-4 text-sm font-body animate-pop-out">
+        <div className="flex flex-row space-x-2 w-fit transform transition-all hover:scale-125">
+          <img src={props.icon} className="w-8" />
+          <h2>{props.name}</h2>
+        </div>
+        <h3 className="ml-12 text-sm">{props.type}</h3>
+        <p className="ml-16 text-sm font-body animate-pop-out">
           {visibility ? props.description.experience : props.description.year}
         </p>
       </li>
@@ -218,7 +246,7 @@ function Skills() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-12 w-fit self-center cursor-pointer hover:text-base-100 transform transition-all hover:scale-125 active:animate-pop-in-out"
+          className="h1 mt-12 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
           onClick={() => {
             const pop = new Audio(popMP3)
             pop.play()
@@ -227,9 +255,9 @@ function Skills() {
           Skills
         </h1>
         {/* languages, frameworks, other */}
-        <ul className="flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">
+        <span className="flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">
           {Object.keys(skillCategories).map((category) => (
-            <li
+            <h2
               key={category}
               className={`cursor-pointer hover:underline ${
                 category === selectedCategory
@@ -239,9 +267,9 @@ function Skills() {
               onClick={() => toggleCategory(category as CategoryKeys)}
             >
               {category}
-            </li>
+            </h2>
           ))}
-        </ul>
+        </span>
         {/* eye */}
         <i
           className="mt-2 fa-solid fa-eye w-fit text-xl self-center cursor-pointer hover:text-base-100 transform transition-transform hover:scale-125"
@@ -250,7 +278,7 @@ function Skills() {
       </motion.div>
       {/* floating skill containers */}
       <motion.div
-        className="absolute left-0 top-0 w-screen h-screen"
+        className="absolute inset-0 w-screen h-screen"
         exit={{ scale: 0, transition: { duration: 0.2 } }}
       >
         {Object.entries(skillCategories).map(([category, skills]) => (

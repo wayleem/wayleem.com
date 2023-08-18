@@ -16,7 +16,7 @@ function About() {
         <h1 className="h1 mt-8">I'm William</h1>
       </motion.div>
       <motion.div
-        className="flex-col"
+        className="flex-col ml-16"
         initial={{ translateX: '-40%' }}
         animate={{
           translateX: 0,

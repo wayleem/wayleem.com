@@ -9,11 +9,11 @@ function Layout() {
   return (
     <>
       {/* threejs canvas */}
-      <div className="absolute top-0 left-0 w-full h-full z-10">
+      <div className="absolute inset-0 w-full h-full z-10">
         <CubeScene />
       </div>
       {/* page content */}
-      <div className="absolute left-0 top-0 w-full h-full z-20 overflow-hidden select-none pointer-events-none">
+      <div className="absolute inset-0 w-full h-full z-20 overflow-hidden select-none pointer-events-none">
         <AnimatePresence mode="wait">
           <motion.main key={location.pathname}>{outlet}</motion.main>
         </AnimatePresence>

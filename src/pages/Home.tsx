@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import poofMP3 from '../assets/poof.mp3'
+import poofMP3 from '../assets/audio/poof.mp3'
 
 function Home() {
   const [languageIndex, setLanguageIndex] = useState(0)
@@ -71,7 +71,7 @@ function Home() {
         {welcomeMessages[languageIndex].message.map((letter, index) => (
           <h1
             key={index}
-            className="transform transition-all cursor-pointer hover:scale-125 hover:-translate-y-2"
+            className="transform transition-all hover:scale-125 hover:-translate-y-2"
             onClick={toggleLanguage}
           >
             {letter}
