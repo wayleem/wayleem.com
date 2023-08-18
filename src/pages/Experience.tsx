@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import popMP3 from '../assets/pop.mp3'
+import popMP3 from '../assets/audio/pop.mp3'
 
 interface XP {
   xpKey: string
@@ -30,7 +30,7 @@ const experiences: XP[] = [
   {
     xpKey: 'clinchoice',
     name: 'ClinChoice',
-    type: 'work',
+    type: 'intern',
     position: 'right-[25%] top-[20%]',
   },
 ]
@@ -39,8 +39,10 @@ function Experience() {
   function XPItem(props: XP) {
     return (
       <div className={`float-text-sm ${props.position}`}>
-        <svg className="animate-pulse absolute top-4 -left-4 w-2 h-2 rounded-full bg-base-content" />
-        <h2>{props.name}</h2>
+        <div className="w-fit transform transition-all hover:scale-125">
+          <svg className="animate-pulse absolute top-4 -left-4 w-2 h-2 rounded-full bg-base-content" />
+          <h2 className="cursor-pointer">{props.name}</h2>
+        </div>
         <h3 className="ml-2 text-sm">{props.type}</h3>
       </div>
     )
@@ -58,7 +60,7 @@ function Experience() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-12 w-fit self-center cursor-pointer hover:text-base-100 transform transition-all hover:scale-125 active:animate-pop-in-out"
+          className="h1 mt-12 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
           onClick={() => {
             const pop = new Audio(popMP3)
             pop.play()
@@ -68,8 +70,14 @@ function Experience() {
         </h1>
       </motion.div>
 
+      <motion.div className="ml-14 mt-14 w-[35%]">
+        <p className="body">
+          Most of my background stems from job experience,{' '}
+        </p>
+      </motion.div>
+
       <motion.div
-        className="absolute left-0 top-0 w-screen h-screen"
+        className="absolute inset-0 w-screen h-screen"
         initial={{ scale: 0 }}
         animate={{ scale: [0, 1.05, 1], transition: { duration: 0.5 } }}
         exit={{
@@ -78,7 +86,6 @@ function Experience() {
         }}
       >
         <ul className="absolute w-full h-full">
-          {/* skill content */}
           {experiences.map((xp) => (
             <XPItem key={xp.xpKey} {...xp} />
           ))}
