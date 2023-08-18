@@ -11,7 +11,7 @@
 }
 
 .body {
-  @apply text-xl font-body text-readable tracking-wide ml-16;
+  @apply text-xl font-body text-readable tracking-wide;
 }
 
 .subtitle-text {
