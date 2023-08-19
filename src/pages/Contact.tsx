@@ -1,11 +1,16 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { saveAs } from 'file-saver'
 import popMP3 from '../assets/audio/pop.mp3'
+import switchOnMP3 from '../assets/audio/switch-on.mp3'
+import ufoMP3 from '../assets/audio/ufo.mp3'
 import githubSVG from '../assets/icons/github.svg'
 import linkedinSVG from '../assets/icons/linkedin.svg'
 import twitterSVG from '../assets/icons/twitter.svg'
 import discordSVG from '../assets/icons/discord.svg'
 import resumePDF from '../assets/resume.pdf'
+import airplane from '../assets/icons/airplane.svg'
+import ufo from '../assets/icons/ufo.svg'
 
 interface Handle {
   handleKey: string
@@ -39,7 +44,7 @@ const handles: Handle[] = [
     caption: 'wayleemh',
     icon: twitterSVG,
     url: 'https://twitter.com/wayleemh',
-    position: 'right-[20%] top-[30%]',
+    position: 'right-[25%] top-[30%]',
   },
   {
     handleKey: 'discord',
@@ -47,10 +52,45 @@ const handles: Handle[] = [
     caption: 'my community',
     icon: discordSVG,
     url: 'https://discord.gg/pThXSZtyVV',
-    position: 'right-[15%] top-[50%]',
+    position: 'right-[20%] top-[50%]',
   },
 ]
+
 function Contact() {
+  const [vehicles, setVehicles] = useState<
+    { key: number; type: 'plane' | 'ufo' }[]
+  >([])
+  const [buttonDisabled, setButtonDisabled] = useState(false)
+
+  // easter egg animation
+  function playFly() {
+    const randomKey = Math.random()
+    const type = Math.random() < 0.05 ? 'ufo' : 'plane' // 5% chance for UFO
+
+    if (type === 'ufo') {
+      const ufoSound = new Audio(ufoMP3)
+      ufoSound.play()
+      setButtonDisabled(true) // Disable button if UFO
+    }
+    setVehicles([...vehicles, { key: randomKey, type }])
+  }
+
+  // destroy components on animation end
+  function handleAnimationComplete(vehicleKey: number) {
+    setVehicles((prevVehicles) =>
+      prevVehicles.filter((vehicle) => vehicle.key !== vehicleKey)
+    )
+    if (
+      vehicles.some(
+        (vehicle) => vehicle.key === vehicleKey && vehicle.type === 'ufo'
+      )
+    ) {
+      setButtonDisabled(false) // Enable button after UFO animation completes
+    }
+  }
+  // easter egg handling ^
+  // -----------------------------------------------------------------------------
+  // social links
   function HandleItem(props: Handle) {
     return (
       <div className={`float-text-sm ${props.position}`}>
@@ -69,6 +109,7 @@ function Contact() {
   }
   return (
     <div>
+      {/* top menu */}
       <motion.div
         className="flex flex-col pointer-events-auto"
         initial={{ translateY: -200 }}
@@ -79,14 +120,22 @@ function Contact() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-12 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
+          className="h1 mt-16 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
           onClick={() => {
+            if (buttonDisabled) {
+              const switchOn = new Audio(switchOnMP3)
+              switchOn.play()
+              return
+            }
             const pop = new Audio(popMP3)
             pop.play()
+            playFly()
           }}
         >
           Contact me
         </h1>
+
+        {/* create email and resume download */}
         <span className="flex flex-row mt-2 justify-center font-body space-x-6 decoration-2 underline-offset-2">
           <span className="flex flex-row space-x-2">
             <a
@@ -111,6 +160,7 @@ function Contact() {
         </span>
       </motion.div>
 
+      {/* social handles */}
       <motion.div
         className="absolute inset-0 w-screen h-screen"
         initial={{ scale: 0 }}
@@ -126,6 +176,24 @@ function Contact() {
           ))}
         </ul>
       </motion.div>
+
+      {/* plane animation easter egg */}
+      {vehicles.map((vehicle) => (
+        <motion.img
+          key={vehicle.key}
+          src={vehicle.type === 'ufo' ? ufo : airplane}
+          className="absolute w-[10%] right-[100%] z-10"
+          initial={{ x: 0, y: `${Math.random() * 100}%` }}
+          animate={{
+            x: '1500%',
+            transition:
+              vehicle.type === 'ufo'
+                ? { duration: 3, ease: 'linear' }
+                : { duration: 1, ease: 'easeIn' },
+          }}
+          onAnimationComplete={() => handleAnimationComplete(vehicle.key)}
+        />
+      ))}
     </div>
   )
 }
