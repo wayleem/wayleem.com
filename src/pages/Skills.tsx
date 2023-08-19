@@ -13,6 +13,8 @@ import nodeSVG from '../assets/icons/nodejs.svg'
 import tailwindSVG from '../assets/icons/tailwindcss.svg'
 import threeSVG from '../assets/icons/three.svg'
 import blenderSVG from '../assets/icons/blender.svg'
+import sqlSVG from '../assets/icons/sql.svg'
+import vbSVG from '../assets/icons/visualbasic.svg'
 import popMP3 from '../assets/audio/pop.mp3'
 
 type SkillKeys = (typeof SKILL_KEYS)[number]
@@ -32,6 +34,8 @@ const SKILL_KEYS = [
   'tailwindcss',
   'threejs',
   'blender',
+  'visual_basic',
+  'sql',
 ]
 
 interface Skill {
@@ -89,7 +93,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'language used in data structures course and object-orientated programming courses',
       },
-      position: 'right-[5%] top-[20%]',
+      position: 'right-[10%] top-[20%]',
     },
     {
       skillKey: 'c',
@@ -113,6 +117,29 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       },
       position: 'right-[15%] top-[70%]',
     },
+    {
+      skillKey: 'sql',
+      name: 'SQL',
+      icon: sqlSVG,
+      type: 'language',
+      description: {
+        year: '1+ years',
+        experience: 'used in database coursework',
+      },
+      position: 'left-[25%] top-[30%]',
+    },
+
+    {
+      skillKey: 'visual_basic',
+      name: 'Visual Basic',
+      icon: vbSVG,
+      type: 'language',
+      description: {
+        year: '1+ years',
+        experience: 'used in excel macros coursework',
+      },
+      position: 'right-[25%] top-[40%]',
+    },
   ],
 
   frameworks: [
@@ -125,7 +152,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience: 'experience ranges through all my js/ts projects',
         year: '4+ years',
       },
-      position: 'left-[25%] top-[30%]',
+      position: 'left-[30%] top-[40%]',
     },
     {
       skillKey: 'reactjs',
@@ -136,7 +163,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '4+ years',
         experience: 'used in all my web projects',
       },
-      position: 'right-[25%] top-[20%]',
+      position: 'right-[30%] top-[20%]',
     },
     {
       skillKey: 'tailwindcss',
@@ -196,7 +223,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'experience from building various models for my game projects',
       },
-      position: 'right-[20%] top-[30%]',
+      position: 'right-[15%] top-[30%]',
     },
   ],
 }
@@ -212,7 +239,7 @@ function Skills() {
 
   const toggleCategory = (category: CategoryKeys | 'all') => {
     if (category === selectedCategory) {
-      setSelectedCategory('all') // If the same category is selected again, set it to 'all'
+      setSelectedCategory('all')
     } else {
       setSelectedCategory(category)
     }
@@ -220,12 +247,12 @@ function Skills() {
 
   function SkillItem(props: Skill) {
     return (
-      <li className={`float-text-sm ${props.position}`}>
-        <div className="flex flex-row space-x-2 w-fit transform transition-all hover:scale-125">
+      <li className={`float-text-sm w-[10%] ${props.position}`}>
+        <div className="flex flex-row space-x-2 transform transition-all hover:scale-125">
           <img src={props.icon} className="w-8" />
           <h2>{props.name}</h2>
         </div>
-        <h3 className="ml-12 text-sm">{props.type}</h3>
+        <h3 className="ml-12 text-sm w-fit">{props.type}</h3>
         <p className="ml-16 text-sm font-body animate-pop-out">
           {visibility ? props.description.experience : props.description.year}
         </p>
@@ -246,7 +273,7 @@ function Skills() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-12 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
+          className="h1 mt-16 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
           onClick={() => {
             const pop = new Audio(popMP3)
             pop.play()

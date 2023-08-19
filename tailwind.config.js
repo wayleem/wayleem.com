@@ -17,7 +17,7 @@ export default {
       },
       {
         dark: {
-          neutral: '#2e2522',
+          neutral: '#1c1614',
           '.text-readable': { color: '#fefefe' },
           '.bg-inactive': { 'background-color': '#1c1412' },
 
@@ -84,7 +84,7 @@ export default {
         },
       },
       animation: {
-        'shoot-out': 'expand 0.6s ease-out forwards',
+        'shoot-out': 'expand 0.5s ease-out forwards',
         'shoot-in': 'shrink 0.2s ease-in forwards',
         'pop-out': 'expand 0.4s ease-out forwards',
         'pop-in': 'shrink 0.2s ease-in forwards',

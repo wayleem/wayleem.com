@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import switchOnMP3 from '../assets/audio/switch-on.mp3'
 import switchOffMP3 from '../assets/audio/switch-off.mp3'
-import clickMP3 from '../assets/audio/click.mp3'
 
 function CubeScene() {
   const [theme, setTheme] = useState('light')
@@ -16,7 +15,7 @@ function CubeScene() {
   )
 
   const plane = new PlaneGeometry(1, 1)
-
+  // materials --------------------------------------------
   const default_material = new MeshBasicMaterial({
     color: 'white',
     side: DoubleSide,
@@ -29,14 +28,15 @@ function CubeScene() {
     wireframe: false,
   })
 
+  // navigation ------------------------------------------
   const navigate = useNavigate()
   function _onClick(e: ThreeEvent<MouseEvent>) {
     const switchOn = new Audio(switchOnMP3)
     const switchOff = new Audio(switchOffMP3)
-    const click = new Audio(clickMP3)
 
     e.stopPropagation()
 
+    // top and bottom are dark mode togglers, the rest are pages
     switch (e.object.name) {
       case 'light':
         setTheme('light')
@@ -61,6 +61,7 @@ function CubeScene() {
     }
   }
 
+  // pointer hover handling ------------------------------------------------
   function _onPointerEnter(e: ThreeEvent<MouseEvent>, mesh: Mesh) {
     e.stopPropagation()
     document.documentElement.style.cursor = 'pointer'
@@ -73,6 +74,7 @@ function CubeScene() {
     mesh.material = default_material
   }
 
+  // data -------------------------------------------------------------------
   type MeshData = {
     name: string
     position: [number, number, number]

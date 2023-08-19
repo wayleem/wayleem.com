@@ -7,11 +7,11 @@
 }
 
 .h1 {
-  @apply text-6xl font-header text-readable tracking-wide;
+  @apply text-6xl font-header text-readable tracking-wider;
 }
 
 .body {
-  @apply text-xl font-body text-readable tracking-wide;
+  @apply text-lg font-body text-readable tracking-wider leading-relaxed;
 }
 
 .subtitle-text {
@@ -23,5 +23,5 @@
 }
 
 .float-text-sm {
-  @apply absolute font-subtitle text-4xl text-base-content hover:text-base-100 pointer-events-auto w-[10%];
+  @apply absolute font-subtitle text-4xl text-base-content hover:text-base-100 pointer-events-auto;
 }
