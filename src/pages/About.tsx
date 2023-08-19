@@ -1,89 +1,152 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
+import sbuBanner from '../assets/icons/sbu.png'
+import cityBanner from '../assets/icons/city.png'
+import guitarBanner from '../assets/icons/guitar.png'
+import popMP3 from '../assets/audio/pop.mp3'
 
 function About() {
+  const [greetingIndex, setGreetingIndex] = useState(0)
+  const [nameIndex, setNameIndex] = useState(0)
+
+  const greetings = ['Hello,', 'Wassup,', 'Hey!', 'Hi,']
+  const names = ["I'm William.", "It's William!", 'William here.']
+
+  const poof = new Audio(popMP3)
+
+  const toggleGreeting = () => {
+    poof.play()
+    setGreetingIndex((prevIndex) => (prevIndex + 1) % greetings.length)
+  }
+
+  const toggleName = () => {
+    poof.play()
+    setNameIndex((prevIndex) => (prevIndex + 1) % names.length)
+  }
+  // easter eggs ^
+  //-------------------------------------------------------------------------
   return (
-    <div className="ml-12 mt-12">
+    <div>
+      {/* greeting card */}
+      <div className="flex flex-col text-center">
+        <motion.div
+          className="mt-16 w-fit self-center pointer-events-auto"
+          initial={{ translateY: -200 }}
+          animate={{
+            translateY: [-200, 20, 0],
+            transition: {
+              duration: 0.5,
+              times: [0, 0.8, 1],
+              ease: 'easeInOut',
+            },
+          }}
+          exit={{ translateY: -200, transition: { duration: 0.2 } }}
+        >
+          <span className="h1 w-fit space-y-4 self-center">
+            <h1
+              className="transform transition-all hover:text-base-100 hover:scale-105 active:animate-pop-in-out"
+              onClick={toggleGreeting}
+            >
+              {greetings[greetingIndex]}
+            </h1>
+            <h1
+              className="transform transition-all hover:text-base-100 hover:scale-105 active:animate-pop-in-out"
+              onClick={toggleName}
+            >
+              {names[nameIndex]}
+            </h1>
+          </span>
+        </motion.div>
+
+        <motion.p
+          className="body mt-6 w-[30%] self-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.2, delay: 0.4 } }}
+          exit={{ opacity: 0 }}
+        >
+          Welcome to my portfolio! I see you have grasped how to navigate my
+          website, thank goodness. I am a student developer pursuing a career in
+          software engineering.
+        </motion.p>
+      </div>
+
+      {/* about me content */}
       <motion.div
-        className="flex-col"
-        initial={{ translateX: '-20%' }}
-        animate={{
-          translateX: 0,
-          transition: { duration: 0.5, ease: 'easeInOut' },
+        className="absolute inset-0 w-screen h-screen"
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1.05, 1], transition: { duration: 0.5 } }}
+        exit={{
+          scale: 0,
+          transition: { duration: 0.2, times: [0, 0.8, 1], ease: 'easeInOut' },
         }}
-        exit={{ translateX: '-20%', transition: { duration: 0.2 } }}
       >
-        <h1 className="h1">Hello,</h1>
-        <h1 className="h1 mt-8">I'm William</h1>
+        <ul className="absolute w-full h-full">
+          {/* life body */}
+          <div className="absolute left-[10%] top-[20%] w-fit">
+            <img src={cityBanner} className="-z-10 w-[550px] opacity-50" />
+            <h1 className="float-text-sm -mt-16">Life</h1>
+            <motion.p
+              className="body mt-2 w-[25%]"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.2, delay: 0.4 },
+              }}
+              exit={{ opacity: 0 }}
+            >
+              I grew up in NYC from a chinese household. As a gen Z, I had
+              always been tech savvy growing up. I self taught myself
+              programming before University. Now with each new experience, I
+              often find myself retracing my steps, but I'm glad that I have a
+              foundation to work with.
+            </motion.p>
+          </div>
+
+          {/* education body */}
+          <div className="absolute right-[10%] top-[40%] w-[26%]">
+            <img src={sbuBanner} className="-ml-16 w-[450px]" />
+            <h1 className="font-subtitle text-4xl text-base-content -mt-2 ml-8">
+              Education
+            </h1>
+            <motion.p
+              className="body mt-2"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.2, delay: 0.4 },
+              }}
+              exit={{ opacity: 0 }}
+            >
+              I am a student at Stony Brook University. I am pursuing a B.S. in
+              Technical Systems Management. The Technical Systems Management
+              major specializes in assessing technologies such as software
+              frameworks, architectures, and tech stacks in an interdisciplinary
+              study with Computer Science. Go seawolves!
+            </motion.p>
+          </div>
+
+          {/* hobbies body */}
+          <div className="absolute left-[20%] top-[55%] w-[25%]">
+            <img src={guitarBanner} className="-ml-28 w-[800px]" />
+            <h1 className="font-subtitle text-4xl text-base-content -mt-32 ml-48">
+              Hobbies
+            </h1>
+            <motion.p
+              className="body mt-4"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.2, delay: 0.4 },
+              }}
+              exit={{ opacity: 0 }}
+            >
+              Outside of programming, I play the guitar! When I get confident
+              enough, maybe I can add an audio snippet for you to sample my
+              playing, just so I don't rupture your ears...
+            </motion.p>
+          </div>
+        </ul>
       </motion.div>
-      <motion.div
-        className="flex-col ml-16"
-        initial={{ translateX: '-40%' }}
-        animate={{
-          translateX: 0,
-          transition: { duration: 0.4, ease: 'easeInOut' },
-        }}
-        exit={{ translateX: '-40%', transition: { duration: 0.2 } }}
-      >
-        <p className="body mt-16">I'm currently a student at SBU</p>
-        <p className="body mt-8 w-[35%]">
-          I am completing a B.S. degree in Technical Systems Management. I have
-          taken several programming courses at SBU that had enriched my
-          concurrent skillset in programing. I am autodidactive by nature as I
-          love learning to use the latest, most prominent technologies, and
-          frameworks. There are often cases where I feel that SBU didn't delve
-          deeper into my interests, and thats where I go push myself to really
-          chase after my dreams.
-        </p>
-        <p className="body mt-8 w-[35%]">
-          I love learning about proper practice. I would sometimes go back where
-          I started to retrace my footsteps to really clean up bad habits, and
-          pick up good ones. There are many experiences where I learned to be
-          humble, and be the student to cultivate myself.
-        </p>
-        <p className="body mt-8 w-[35%]">
-          There are also times where I know I must take the lead. I have no
-          problem showing initiative in areas that I am confident in, and areas
-          that I am new to.
-        </p>
-        <p className="body mt-8 w-[35%]">
-          Given my experience, I have dealt with Front-End development and Game
-          development. I am always open to go outside my comfort zone and pick
-          up new experiences to broaden my horizons.
-        </p>
-      </motion.div>
-      <motion.span
-        className="float-text-lg right-[30%] top-[5%]"
-        initial={{ translateX: '300%' }}
-        animate={{
-          translateX: 0,
-          transition: { duration: 0.5, ease: 'easeInOut' },
-        }}
-        exit={{ translateX: '-500%', transition: { duration: 0.2 } }}
-      >
-        Front-End;
-      </motion.span>
-      <motion.span
-        className="float-text-lg right-[10%] top-[40%]"
-        initial={{ translateX: '300%' }}
-        animate={{
-          translateX: 0,
-          transition: { duration: 0.7, ease: 'easeInOut' },
-        }}
-        exit={{ translateX: '-500%', transition: { duration: 0.2 } }}
-      >
-        Developer;
-      </motion.span>
-      <motion.span
-        className="float-text-lg right-[20%] bottom-[20%]"
-        initial={{ translateX: '300%' }}
-        animate={{
-          translateX: 0,
-          transition: { duration: 0.6, ease: 'easeInOut' },
-        }}
-        exit={{ translateX: '-500%', transition: { duration: 0.2 } }}
-      >
-        Software Engineer;
-      </motion.span>
     </div>
   )
 }
