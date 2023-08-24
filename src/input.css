@@ -10,12 +10,12 @@
   @apply text-6xl font-header text-readable tracking-wider;
 }
 
-.body {
-  @apply text-lg font-body text-readable tracking-wider leading-relaxed;
-}
-
 .subtitle-text {
   @apply text-xl font-subtitle text-readable tracking-wide;
+}
+
+.body {
+  @apply text-lg font-body text-readable tracking-wider leading-relaxed;
 }
 
 .float-text-lg {

@@ -1,11 +1,16 @@
 import { motion } from 'framer-motion'
 import popMP3 from '../assets/audio/pop.mp3'
+import virtual_tour_1 from '../assets/video/virtualtourPre.gif'
+import virtual_tour_2 from '../assets/video/virtualtourEnter.gif'
+import React, { useState } from 'react'
+import ReactPaginate from 'react-paginate'
 
 interface XP {
   xpKey: string
   name: string
   type: string
   position: string
+  //components: React.ReactNode[]
 }
 
 const experiences: XP[] = [
@@ -13,34 +18,56 @@ const experiences: XP[] = [
     xpKey: 'virtual_tour',
     name: 'Virtual Tour',
     type: 'project',
-    position: 'right-[20%] top-[30%]',
+    position: 'left-[25%] top-[30%]',
   },
   {
     xpKey: 'spot',
     name: 'Spot',
     type: 'project',
-    position: 'right-[15%] top-[70%]',
+    position: 'left-[20%] top-[50%]',
   },
   {
     xpKey: 'ghost_hunter',
     name: 'Ghost Hunter',
     type: 'project',
-    position: 'right-[15%] top-[50%]',
+    position: 'right-[25%] top-[30%]',
   },
   {
     xpKey: 'clinchoice',
     name: 'ClinChoice',
     type: 'intern',
-    position: 'right-[25%] top-[20%]',
+    position: 'right-[20%] top-[50%]',
   },
 ]
 
+function VirtualTour() {
+  return (
+    <div>
+      <h1 className="font-header text-4xl">Virtual Tour</h1>
+      <img src={virtual_tour_1} />
+      <img src={virtual_tour_2} className="w-[50%]" />
+    </div>
+  )
+}
+
+enum Display {
+  on = 'On',
+  off = 'Off',
+  inactive = 'Inactive',
+}
+
 function Experience() {
+  const [visible, setVisible] = useState<Display>(Display.inactive)
+  function _openXP(xpKey: string) {
+    setVisible(Display.on)
+  }
   function XPItem(props: XP) {
     return (
       <div className={`float-text-sm ${props.position}`}>
-        <div className="w-fit transform transition-all hover:scale-125">
-          <svg className="animate-pulse absolute top-4 -left-4 w-2 h-2 rounded-full bg-base-content" />
+        <div
+          className="w-fit transform transition-all hover:scale-125 active:animate-pop-in-out"
+          onClick={() => _openXP(props.xpKey)}
+        >
           <h2 className="cursor-pointer">{props.name}</h2>
         </div>
         <h3 className="ml-2 text-sm">{props.type}</h3>
@@ -71,12 +98,6 @@ function Experience() {
         </h1>
       </motion.div>
 
-      <motion.div className="ml-14 mt-14 w-[35%]">
-        <p className="body">
-          Most of my background stems from job experience,{' '}
-        </p>
-      </motion.div>
-
       {/* projects and work items */}
       <motion.div
         className="absolute inset-0 w-screen h-screen"
@@ -92,6 +113,19 @@ function Experience() {
             <XPItem key={xp.xpKey} {...xp} />
           ))}
         </ul>
+      </motion.div>
+
+      <motion.div
+        className={`fixed bg-inactive inset-0 opacity-0 pointer-events-none ${
+          visible === Display.on
+            ? 'animate-shade-in pointer-events-auto'
+            : visible === Display.off
+            ? 'animate-shade-out'
+            : ''
+        }`}
+        onClick={() => setVisible(Display.off)}
+      >
+        <VirtualTour />
       </motion.div>
     </div>
   )
