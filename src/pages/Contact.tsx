@@ -63,7 +63,7 @@ function Contact() {
   const [buttonDisabled, setButtonDisabled] = useState(false)
 
   // easter egg animation
-  function playFly() {
+  function _playFly() {
     const randomKey = Math.random()
     const type = Math.random() < 0.05 ? 'ufo' : 'plane' // 5% chance for UFO
 
@@ -76,7 +76,7 @@ function Contact() {
   }
 
   // destroy components on animation end
-  function handleAnimationComplete(vehicleKey: number) {
+  function _handleAnimationComplete(vehicleKey: number) {
     setVehicles((prevVehicles) =>
       prevVehicles.filter((vehicle) => vehicle.key !== vehicleKey)
     )
@@ -129,7 +129,7 @@ function Contact() {
             }
             const pop = new Audio(popMP3)
             pop.play()
-            playFly()
+            _playFly()
           }}
         >
           Contact me
@@ -191,7 +191,7 @@ function Contact() {
                 ? { duration: 3, ease: 'linear' }
                 : { duration: 1, ease: 'easeIn' },
           }}
-          onAnimationComplete={() => handleAnimationComplete(vehicle.key)}
+          onAnimationComplete={() => _handleAnimationComplete(vehicle.key)}
         />
       ))}
     </div>
