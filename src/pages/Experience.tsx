@@ -2,15 +2,14 @@ import { motion } from 'framer-motion'
 import popMP3 from '../assets/audio/pop.mp3'
 import virtual_tour_1 from '../assets/video/virtualtourPre.gif'
 import virtual_tour_2 from '../assets/video/virtualtourEnter.gif'
-import React, { useState } from 'react'
-import ReactPaginate from 'react-paginate'
+import { useState } from 'react'
 
 interface XP {
   xpKey: string
   name: string
   type: string
   position: string
-  //components: React.ReactNode[]
+  component: () => JSX.Element
 }
 
 const experiences: XP[] = [
@@ -19,33 +18,58 @@ const experiences: XP[] = [
     name: 'Virtual Tour',
     type: 'project',
     position: 'left-[25%] top-[30%]',
+    component: VirtualTourContent,
   },
   {
     xpKey: 'spot',
     name: 'Spot',
     type: 'project',
     position: 'left-[20%] top-[50%]',
+    component: SpotContent,
   },
   {
     xpKey: 'ghost_hunter',
     name: 'Ghost Hunter',
     type: 'project',
     position: 'right-[25%] top-[30%]',
+    component: GhostHunterContent,
   },
   {
     xpKey: 'clinchoice',
     name: 'ClinChoice',
     type: 'intern',
     position: 'right-[20%] top-[50%]',
+    component: ClinChoiceContent,
   },
 ]
 
-function VirtualTour() {
+function VirtualTourContent() {
   return (
     <div>
       <h1 className="font-header text-4xl">Virtual Tour</h1>
       <img src={virtual_tour_1} />
       <img src={virtual_tour_2} className="w-[50%]" />
+    </div>
+  )
+}
+function SpotContent() {
+  return (
+    <div>
+      <h1 className="font-header text-4xl">Spot</h1>
+    </div>
+  )
+}
+function GhostHunterContent() {
+  return (
+    <div>
+      <h1 className="font-header text-4xl">Ghost Hunter</h1>
+    </div>
+  )
+}
+function ClinChoiceContent() {
+  return (
+    <div>
+      <h1 className="font-header text-4xl">ClinChoice</h1>
     </div>
   )
 }
@@ -58,15 +82,17 @@ enum Display {
 
 function Experience() {
   const [visible, setVisible] = useState<Display>(Display.inactive)
-  function _openXP(xpKey: string) {
-    setVisible(Display.on)
-  }
+  const [content, setContent] = useState<JSX.Element>()
+
   function XPItem(props: XP) {
     return (
       <div className={`float-text-sm ${props.position}`}>
         <div
           className="w-fit transform transition-all hover:scale-125 active:animate-pop-in-out"
-          onClick={() => _openXP(props.xpKey)}
+          onClick={() => {
+            setVisible(Display.on)
+            setContent(props.component)
+          }}
         >
           <h2 className="cursor-pointer">{props.name}</h2>
         </div>
@@ -115,18 +141,20 @@ function Experience() {
         </ul>
       </motion.div>
 
-      <motion.div
-        className={`fixed bg-inactive inset-0 opacity-0 pointer-events-none ${
-          visible === Display.on
-            ? 'animate-shade-in pointer-events-auto'
-            : visible === Display.off
-            ? 'animate-shade-out'
-            : ''
-        }`}
-        onClick={() => setVisible(Display.off)}
-      >
-        <VirtualTour />
-      </motion.div>
+      <div>
+        <motion.div
+          className={`fixed bg-inactive inset-0 opacity-0 pointer-events-none ${
+            visible === Display.on
+              ? 'animate-shade-in pointer-events-auto'
+              : visible === Display.off
+              ? 'animate-shade-out'
+              : ''
+          }`}
+          onClick={() => setVisible(Display.off)}
+        >
+          <div>{content}</div>
+        </motion.div>
+      </div>
     </div>
   )
 }

@@ -94,7 +94,7 @@ export default {
         'fade-out': 'fadeOut 0.5s ease-in-out',
         'fade-in-out': 'fadeInOut 0.5s ease-in-out',
         'shade-in': 'shadeIn 0.5s ease-in-out forwards',
-        'shade-out': 'shadeOut 0.5s ease-in-out',
+        'shade-out': 'shadeOut 0.2s ease-in-out',
         'slide-in-up': 'slideUp 0.5s ease-in-out forwards',
         'slide-out-down': 'slideDown 0.5s ease-in-out forwards',
       },
