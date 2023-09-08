@@ -5,44 +5,56 @@ import virtual_tour_2 from '../assets/video/virtual-tour-2.gif'
 import virtual_tour_3 from '../assets/video/virtual-tour-3.gif'
 import { useState } from 'react'
 
+type CategoryKeys = 'projects' | 'jobs'
 interface XP {
   xpKey: string
   name: string
   type: string
   position: string
+  date: string
   component: () => JSX.Element
 }
 
-const experiences: XP[] = [
-  {
-    xpKey: 'virtual_tour',
-    name: 'Virtual Tour',
-    type: 'project',
-    position: 'left-[25%] top-[30%]',
-    component: VirtualTourContent,
-  },
-  {
-    xpKey: 'spot',
-    name: 'Spot',
-    type: 'project',
-    position: 'left-[20%] top-[50%]',
-    component: SpotContent,
-  },
-  {
-    xpKey: 'ghost_hunter',
-    name: 'Ghost Hunter',
-    type: 'project',
-    position: 'right-[25%] top-[30%]',
-    component: GhostHunterContent,
-  },
-  {
-    xpKey: 'clinchoice',
-    name: 'ClinChoice',
-    type: 'intern',
-    position: 'right-[20%] top-[50%]',
-    component: ClinChoiceContent,
-  },
-]
+const xpCategories: Record<CategoryKeys, XP[]> = {
+  projects: [
+    {
+      xpKey: 'virtual_tour',
+      name: 'Virtual Tour',
+      type: 'project',
+      date: 'mar2023-may2023',
+      position: 'left-[25%] top-[30%]',
+      component: VirtualTourContent,
+    },
+
+    {
+      xpKey: 'spot',
+      name: 'Spot',
+      type: 'project',
+      date: 'nov2022',
+      position: 'left-[20%] top-[50%]',
+      component: SpotContent,
+    },
+
+    {
+      xpKey: 'ghost_hunter',
+      name: 'Ghost Hunter',
+      type: 'project',
+      date: 'dec2022',
+      position: 'right-[25%] top-[30%]',
+      component: GhostHunterContent,
+    },
+  ],
+  jobs: [
+    {
+      xpKey: 'clinchoice',
+      name: 'ClinChoice',
+      type: 'intern',
+      date: 'jul2023-aug2023',
+      position: 'right-[20%] top-[50%]',
+      component: ClinChoiceContent,
+    },
+  ],
+}
 
 function VirtualTourContent() {
   return (
@@ -83,7 +95,7 @@ function VirtualTourContent() {
               communicating with the client to developing the application
               itself. I led the developmental part of the project, dictating the
               structure, frameworks, and schedule to complete and deliver the
-              final virtual tour product within the span of 2 months.
+              final virtual tour product within the span of 3 months.
             </p>
             <h1 id="cycle" className="h2">
               Cycle
@@ -287,12 +299,16 @@ enum Display {
 }
 
 function Experience() {
+  const [selectedCategory, setSelectedCategory] = useState<
+    CategoryKeys | 'all'
+  >('all')
   const [visible, setVisible] = useState<Display>(Display.inactive)
   const [content, setContent] = useState<XP>()
 
   function XPItem(props: XP) {
     return (
       <div className={`float-text-sm ${props.position}`}>
+        <h3 className="text-sm">{props.type}</h3>
         <div
           className="w-fit transform transition-all hover:scale-125 active:animate-pop-in-out"
           onClick={() => {
@@ -300,11 +316,19 @@ function Experience() {
             setContent(props)
           }}
         >
-          <h2 className="cursor-pointer">{props.name}</h2>
+          <h2 className="ml-4 cursor-pointer">{props.name}</h2>
         </div>
-        <h3 className="ml-2 text-sm">{props.type}</h3>
+        <h3 className="ml-12 text-sm">{props.date}</h3>
       </div>
     )
+  }
+
+  const toggleCategory = (category: CategoryKeys | 'all') => {
+    if (category === selectedCategory) {
+      setSelectedCategory('all')
+    } else {
+      setSelectedCategory(category)
+    }
   }
 
   return (
@@ -324,10 +348,26 @@ function Experience() {
           onClick={() => {
             const pop = new Audio(popMP3)
             pop.play()
+            toggleCategory('all')
           }}
         >
           Experience
         </h1>
+        <span className="flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">
+          {Object.keys(xpCategories).map((category) => (
+            <h2
+              key={category}
+              className={`cursor-pointer hover:underline ${
+                category === selectedCategory
+                  ? 'font-semibold text-base-100'
+                  : 'hover:text-base-100 text-base-content'
+              }`}
+              onClick={() => toggleCategory(category as CategoryKeys)}
+            >
+              {category}
+            </h2>
+          ))}
+        </span>
       </motion.div>
 
       {/* projects and work items */}
@@ -340,11 +380,20 @@ function Experience() {
           transition: { duration: 0.2, times: [0, 0.8, 1], ease: 'easeInOut' },
         }}
       >
-        <ul className="absolute w-full h-full">
-          {experiences.map((xp) => (
-            <XPItem key={xp.xpKey} {...xp} />
-          ))}
-        </ul>
+        {Object.entries(xpCategories).map(([category, experiences]) => (
+          <ul
+            key={category}
+            className={`absolute w-full h-full ${
+              selectedCategory === category || selectedCategory === 'all'
+                ? 'animate-shoot-out'
+                : 'animate-shoot-in'
+            }`}
+          >
+            {experiences.map((xp) => (
+              <XPItem key={xp.xpKey} {...xp} />
+            ))}
+          </ul>
+        ))}
       </motion.div>
 
       <div className="z-30">
@@ -359,7 +408,10 @@ function Experience() {
         >
           <div className="w-[60%] flex flex-col justify-between mx-auto mt-12 mb-12">
             <div className="flex flex-row justify-between">
-              <h1 className="h2 mb-8">{content?.name}</h1>
+              <div className="flex flex-row space-x-4">
+                <h1 className="h2 mb-8">{content?.name}</h1>
+                <h2 className="body mt-2">{content?.date}</h2>
+              </div>
               <div
                 className="flex flex-row items-center space-x-2 text-readable cursor-pointer hover:text-error"
                 onClick={() => setVisible(Display.off)}
