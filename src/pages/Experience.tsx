@@ -3,6 +3,10 @@ import popMP3 from '../assets/audio/pop.mp3'
 import virtual_tour_1 from '../assets/video/virtual-tour-1.gif'
 import virtual_tour_2 from '../assets/video/virtual-tour-2.gif'
 import virtual_tour_3 from '../assets/video/virtual-tour-3.gif'
+import clinchoice1 from '../assets/video/clinchoice1.gif'
+import clinchoice2 from '../assets/video/clinchoice2.gif'
+import clinchoice3 from '../assets/video/clinchoice3.gif'
+import githubSVG from '../assets/icons/github.svg'
 import { useState } from 'react'
 
 type CategoryKeys = 'projects' | 'jobs'
@@ -12,6 +16,7 @@ interface XP {
   type: string
   position: string
   date: string
+  url?: string
   component: () => JSX.Element
 }
 
@@ -23,6 +28,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       type: 'project',
       date: 'mar2023-may2023',
       position: 'left-[25%] top-[30%]',
+      url: 'https://github.com/wayleem/virtual-tour',
       component: VirtualTourContent,
     },
 
@@ -32,6 +38,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       type: 'project',
       date: 'nov2022',
       position: 'left-[20%] top-[50%]',
+      url: 'https://github.com/wayleem/spot',
       component: SpotContent,
     },
 
@@ -41,6 +48,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       type: 'project',
       date: 'dec2022',
       position: 'right-[25%] top-[30%]',
+      url: 'https://github.com/wayleem/ghost-hunter',
       component: GhostHunterContent,
     },
   ],
@@ -51,6 +59,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       type: 'intern',
       date: 'jul2023-aug2023',
       position: 'right-[20%] top-[50%]',
+      url: 'https://github.com/wayleem/demo-data-server',
       component: ClinChoiceContent,
     },
   ],
@@ -274,19 +283,67 @@ function ClinChoiceContent() {
             <h1 id="overview" className="h2">
               Overview
             </h1>
-            <p className="body"></p>
-
+            <p className="body">
+              Worked with a mentor to develop best practice future ClinChoice
+              web applications. To identify best practices, I conducted research
+              on various modern web development frameworks related to data
+              analysis and UI that fits ClinChoice's discipline such as data
+              visualization. I made assessments on each framework and library if
+              they satisfy the standards of ClinChoice. Under guidance from the
+              IT vice president, a demo data server is created to replicate the
+              usage of such frameworks to ClinChoice standards within 1 month.
+            </p>
             <h1 id="cycle" className="h2">
               Cycle
             </h1>
-            <p className="body"></p>
+            <p className="body">
+              ClinChoice's web applications is built with JavaScript and
+              BootStrap. To create scalable prospects for ClinChoice's future
+              web applications, I suggested the usage of TypeScript and outlined
+              the benefits and technical assessments of the language to my
+              mentor. I wanted to change the current infrastructure to one that
+              was more modern.
+              <br />
+              <br />
+              In weekly scrum meetings, I presented the pros and cons of various
+              web development frameworks to my team to decide upon frameworks to
+              use for user interfaces. I delivered a cohesive and concise
+              presentation on the frameworks ClinChoice should use. After
+              approval, I spent the rest of the internship developing a demo
+              prototype to showcase the usage of the frameworks.
+              <br />
+              <br />I worked by myself with occasional weekly monitoring by my
+              mentor to create a mock data server using ClinChoice's current
+              data server interface as a starting point. Nearing the end of my
+              internship, I presented the usage of TypeScript and the frameworks
+              in the developmental stage and demoed my data server that I had
+              created to a board of ClinChoice senior executives.
+            </p>
             <h1 id="technical" className="h2">
               Technical
             </h1>
-            <p className="body"></p>
+            <p className="body">
+              The demo data server is built with React, Redux, MaterialUI,
+              ApexCharts, and written in TypeScript.
+              <br />
+              <br />I used TailwindCSS and daisyUI to organize my styles to ease
+              the developmental process. The demo data server was self
+              documenting with the usage of TypeScript which emphasizes the
+              benefits of TypeScript. Other than that, the technicalities of
+              each frameworks role was explained in the final presentation.
+              Since ClinChoice spans internationally, it is important to be
+              accessible and that was the objective of the UI design. MaterialUI
+              is a enterprise level component library that is rich with
+              features, allowing data analysts across ClinChoice to easily
+              interpret information on future ClinChoice web applications.
+            </p>
           </div>
         </div>
-        <div className="flex flex-col space-y-8"></div>
+        <div className="flex flex-col space-y-8">
+          <img src={clinchoice1} />
+          <img src={clinchoice2} />
+          <img src={clinchoice3} />
+        </div>
       </div>
     </div>
   )
@@ -407,10 +464,17 @@ function Experience() {
           }`}
         >
           <div className="w-[60%] flex flex-col justify-between mx-auto mt-12 mb-12">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between mb-8">
               <div className="flex flex-row space-x-4">
-                <h1 className="h2 mb-8">{content?.name}</h1>
+                <h1 className="h2">{content?.name}</h1>
                 <h2 className="body mt-2">{content?.date}</h2>
+                <a
+                  href={content?.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img className="w-6 mt-2" src={githubSVG} />
+                </a>
               </div>
               <div
                 className="flex flex-row items-center space-x-2 text-readable cursor-pointer hover:text-error"
