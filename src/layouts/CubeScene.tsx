@@ -1,10 +1,25 @@
-import { Canvas, ThreeEvent } from '@react-three/fiber'
+import { Canvas, ThreeEvent, useLoader } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import { PlaneGeometry, MeshBasicMaterial, Mesh, DoubleSide } from 'three'
+import {
+  PlaneGeometry,
+  MeshBasicMaterial,
+  Mesh,
+  DoubleSide,
+  TextureLoader,
+  Texture,
+  ClampToEdgeWrapping,
+  NearestFilter,
+} from 'three'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import switchOnMP3 from '../assets/audio/switch-on.mp3'
 import switchOffMP3 from '../assets/audio/switch-off.mp3'
+import profile from '../assets/textures/aboutme.jpg'
+import lightbulb from '../assets/textures/skills.jpg'
+import folder from '../assets/textures/experience.jpg'
+import mail from '../assets/textures/contactme.jpg'
+import sun from '../assets/textures/lightmode.jpg'
+import moon from '../assets/textures/darkmode.jpg'
 
 function CubeScene() {
   const [theme, setTheme] = useState('light')
@@ -16,17 +31,44 @@ function CubeScene() {
 
   const plane = new PlaneGeometry(1, 1)
   // materials --------------------------------------------
-  const default_material = new MeshBasicMaterial({
-    color: 'white',
-    side: DoubleSide,
-    wireframe: false,
-  })
 
-  const highlight_material = new MeshBasicMaterial({
-    color: '#ff9a73',
-    side: DoubleSide,
-    wireframe: false,
-  })
+  const textureInfo = {
+    about: profile,
+    skills: lightbulb,
+    experience: folder,
+    contact: mail,
+    light: sun,
+    dark: moon,
+  }
+
+  const textures = Object.entries(textureInfo).reduce(
+    (acc, [key, path]) => {
+      const texture = useLoader(TextureLoader, path) as Texture
+
+      texture.wrapS = texture.wrapT = ClampToEdgeWrapping
+      texture.minFilter = texture.magFilter = NearestFilter
+
+      return { ...acc, [key]: texture }
+    },
+    {} as Record<string, Texture>
+  )
+  const createMaterial = (color: string, map: Texture) => {
+    return new MeshBasicMaterial({
+      color,
+      map,
+      side: DoubleSide,
+      wireframe: false,
+    })
+  }
+
+  const materials = Object.entries(textures).reduce(
+    (acc, [key, texture]) => ({
+      ...acc,
+      [`highlight_${key}`]: createMaterial('#ff9a73', texture),
+      [`default_${key}`]: createMaterial('white', texture),
+    }),
+    {} as Record<string, MeshBasicMaterial>
+  )
 
   // navigation ------------------------------------------
   const navigate = useNavigate()
@@ -65,13 +107,13 @@ function CubeScene() {
   function _onPointerEnter(e: ThreeEvent<MouseEvent>, mesh: Mesh) {
     e.stopPropagation()
     document.documentElement.style.cursor = 'pointer'
-    mesh.material = highlight_material
+    mesh.material = materials[`highlight_${mesh.name}`]
   }
 
   function _onPointerLeave(e: ThreeEvent<MouseEvent>, mesh: Mesh) {
     e.stopPropagation()
     document.documentElement.style.cursor = 'auto'
-    mesh.material = default_material
+    mesh.material = materials[`default_${mesh.name}`]
   }
 
   // data -------------------------------------------------------------------
@@ -107,7 +149,7 @@ function CubeScene() {
           position={mesh.position}
           rotation={mesh.rotation}
           geometry={plane}
-          material={default_material}
+          material={materials[`default_${mesh.name}`]}
           onClick={_onClick}
           onPointerEnter={(e) => _onPointerEnter(e, e.object as Mesh)}
           onPointerLeave={(e) => _onPointerLeave(e, e.object as Mesh)}
