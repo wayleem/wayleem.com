@@ -277,6 +277,7 @@ function Skills() {
           onClick={() => {
             const pop = new Audio(popMP3)
             pop.play()
+            toggleCategory('all')
           }}
         >
           Skills
