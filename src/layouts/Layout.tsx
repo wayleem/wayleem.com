@@ -39,6 +39,9 @@ function Layout() {
           <span className="subtitle-text">{location.pathname}</span>
         </motion.div>
       </AnimatePresence>
+      <h1 className="absolute mb-2 ml-2 font-subtitle text-sm left-0 bottom-0 z-20">
+        Copyright © 2023 William Huang.
+      </h1>
     </>
   )
 }
