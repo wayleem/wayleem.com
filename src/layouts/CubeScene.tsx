@@ -64,8 +64,8 @@ function CubeScene() {
   const materials = Object.entries(textures).reduce(
     (acc, [key, texture]) => ({
       ...acc,
-      [`highlight_${key}`]: createMaterial('#ff9a73', texture),
-      [`default_${key}`]: createMaterial('white', texture),
+      [`highlight_${key}`]: createMaterial('#e3b19f', texture),
+      [`default_${key}`]: createMaterial('#f5d4c9', texture),
     }),
     {} as Record<string, MeshBasicMaterial>
   )
