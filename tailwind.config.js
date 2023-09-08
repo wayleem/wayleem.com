@@ -9,10 +9,16 @@ export default {
         light: {
           neutral: '#FEF0EB',
           '.text-readable': { color: '#59453e' },
-          '.bg-inactive': { 'background-color': '#1c1412' },
+          '.bg-inactive': { 'background-color': '#fefefe' },
+          '.bg-scroll': { 'background-color': '#59453e' },
 
           'base-content': '#59453e',
           'base-100': '#2e2522',
+
+          info: '#3abff8',
+          success: '#36d399',
+          warning: '#fbbd23',
+          error: '#f87272',
         },
       },
       {
@@ -20,9 +26,15 @@ export default {
           neutral: '#1c1614',
           '.text-readable': { color: '#fefefe' },
           '.bg-inactive': { 'background-color': '#1c1412' },
+          '.bg-scroll': { 'background-color': '#fefefe' },
 
           'base-content': '#fefefe',
           'base-100': '#f2eae6',
+
+          info: '#4c7cdc',
+          success: '#27dd73',
+          warning: '#f7a94b',
+          error: '#E4725E',
         },
       },
     ],
@@ -76,7 +88,7 @@ export default {
         },
         shadeIn: {
           '0%': { opacity: '0' },
-          '100%': { opacity: '0.9' },
+          '100%': { opacity: '1' },
         },
         shadeOut: {
           '0%': { opacity: '0.5' },
