@@ -6,6 +6,9 @@ import virtual_tour_3 from '../assets/video/virtual-tour-3.gif'
 import clinchoice1 from '../assets/video/clinchoice1.gif'
 import clinchoice2 from '../assets/video/clinchoice2.gif'
 import clinchoice3 from '../assets/video/clinchoice3.gif'
+import spot1 from '../assets/video/spot1.gif'
+import spot2 from '../assets/video/spot2.gif'
+import spot3 from '../assets/video/spot3.gif'
 import githubSVG from '../assets/icons/github.svg'
 import { useState } from 'react'
 
@@ -141,11 +144,12 @@ function VirtualTourContent() {
               <br />
               We showed the client each step of the developmental process and
               improvements up to its completion, to allow them to interject at
-              any design choices. We actively deploy the application through its
-              life cycle to allow the client to test the virtual tour for
-              themselves. Once completed, we continued to communicate with the
-              client with any improvements or features they would like before we
-              ultimately present the project at the end of the semester.
+              any design choices and hear their feedback. We actively deploy the
+              application through its life cycle to allow the client to test the
+              virtual tour for themselves. Once completed, we continued to
+              communicate with the client with any improvements or features they
+              would like before we ultimately present the project at the end of
+              the semester.
             </p>
             <h1 id="technical" className="h2">
               Technical
@@ -199,19 +203,78 @@ function SpotContent() {
             <h1 id="overview" className="h2">
               Overview
             </h1>
-            <p className="body"></p>
+            <p className="body">
+              Solo rapid development of a hide and seek game prototype called
+              Spot on Roblox for a Stony Brook related course project. Built
+              around the simple game of hide and seek, the course challenged us
+              to use virtualization to our advantage to shift how the game can
+              be played out on an online platform. The name Spot is derived from
+              the character of a spotlight the seeker takes on. Achieved core
+              game functionalities to be demoed in 1 month.
+            </p>
 
             <h1 id="cycle" className="h2">
               Cycle
             </h1>
-            <p className="body"></p>
+            <p className="body">
+              I used Roblox Studio for my game development project because it
+              provided a platform for multiplayer, existing physics and movement
+              controls. Therefore, given a span of a month, I can flesh out the
+              game functionalities more and be able to involve the entire class
+              in a playtest at the end. The game's foundation is hide and seek
+              so I aimed to work on the core fundamentals of hide and seek
+              first.
+              <br />
+              <br />
+              Working on the core fundamentals of hide and seek boils down to
+              two classes: hiders and a seeker. Win conditions for the hider is
+              when they successfully evade capture within a time limit whereas
+              seekers win when they eliminated all the hiders. Given the premise
+              of hide and seek, I am given inspiration for the theme of my game.
+              I characterized the seeker as a big spotlight that eliminates
+              hiders in its beam.
+              <br />
+              <br />
+              These core ideas can easily create a story that I can now build my
+              game consistently around, hence the name Spot. For instance, I can
+              take advantage of the characteristics of the seeker being a
+              spotlight and spin it into a mechanic where hiders are not visible
+              unless they are within the beam of light.
+              <br />
+              <br />
+              After rapidly laying out the grounds of the game, I independently
+              fleshed out a prototype for presentation at the project deadline
+              where I receive feedback from my professor and peers after they
+              playtested my game.
+            </p>
             <h1 id="technical" className="h2">
               Technical
             </h1>
-            <p className="body"></p>
+            <p className="body">
+              This game is built in Roblox Studio where I used a plugin to use
+              my own editor and transpile TypeScript to Lua since Roblox uses
+              Lua.
+              <br />
+              <br />I broke down Spot's premise to server and client functions.
+              For instance, the seeker's client has all hiders rendered
+              invisible unless they come within the range of the light. The
+              server keeps track of the seeker's position to maintain
+              consistency for all players to determine if the hiders get
+              damaged. Therefore, there may be some desync in player
+              perspectives depending on latency but it should be accurate for
+              everyone.
+              <br />
+              <br />
+              In conclusion, this was just a simple hide and seek prototype but
+              the emphasis was on the rapid prototyping and development.
+            </p>
           </div>
         </div>
-        <div className="flex flex-col space-y-8"></div>
+        <div className="flex flex-col space-y-8">
+          <img src={spot2} />
+          <img src={spot3} />
+          <img src={spot1} />
+        </div>
       </div>
     </div>
   )
@@ -326,7 +389,7 @@ function ClinChoiceContent() {
               The demo data server is built with React, Redux, MaterialUI,
               ApexCharts, and written in TypeScript.
               <br />
-              <br />I used TailwindCSS and daisyUI to organize my styles to ease
+              <br />I used TailwindCSS and DaisyUI to organize my styles to ease
               the developmental process. The demo data server was self
               documenting with the usage of TypeScript which emphasizes the
               benefits of TypeScript. Other than that, the technicalities of
