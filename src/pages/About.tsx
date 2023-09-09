@@ -73,16 +73,20 @@ function About() {
       {/* about me content */}
       <motion.div
         className="absolute inset-0 w-screen h-screen"
-        initial={{ scale: 0 }}
-        animate={{ scale: [0, 1.05, 1], transition: { duration: 0.5 } }}
-        exit={{
-          scale: 0,
-          transition: { duration: 0.2, times: [0, 0.8, 1], ease: 'easeInOut' },
+        initial={{ translateX: -2000 }}
+        animate={{
+          translateX: [-2000, 20, 0],
+          transition: {
+            duration: 0.5,
+            times: [0, 0.8, 1],
+            ease: 'easeInOut',
+          },
         }}
+        exit={{ translateY: -2000, transition: { duration: 0.2 } }}
       >
-        <ul className="absolute w-full h-full">
+        <div className="absolute w-full h-full">
           {/* life body */}
-          <div className="absolute left-[10%] top-[20%] w-fit">
+          <div className="absolute left-[10%] top-[20%]">
             <img src={cityBanner} className="-z-10 w-[550px] opacity-50" />
             <h1 className="float-text-sm -mt-16">Life</h1>
             <motion.p
@@ -145,7 +149,7 @@ function About() {
               playing, just so I don't rupture your ears...
             </motion.p>
           </div>
-        </ul>
+        </div>
       </motion.div>
     </div>
   )
