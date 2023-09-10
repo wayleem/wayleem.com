@@ -23,7 +23,7 @@ export default {
       },
       {
         dark: {
-          neutral: '#1c1614',
+          neutral: '#2e2522',
           '.text-readable': { color: '#fefefe' },
           '.bg-inactive': { 'background-color': '#1c1412' },
           '.bg-scroll': { 'background-color': '#fefefe' },
