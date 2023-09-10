@@ -64,8 +64,7 @@ function About() {
           animate={{ opacity: 1, transition: { duration: 0.2, delay: 0.4 } }}
           exit={{ opacity: 0 }}
         >
-          Welcome to my portfolio! I see you have grasped how to navigate my
-          website, thank goodness. I am a student developer pursuing a career in
+          Welcome to my portfolio. I am a student developer pursuing a career in
           software engineering.
         </motion.p>
       </div>
@@ -82,7 +81,7 @@ function About() {
             ease: 'easeInOut',
           },
         }}
-        exit={{ translateY: -2000, transition: { duration: 0.2 } }}
+        exit={{ translateY: -1200, transition: { duration: 0.2 } }}
       >
         <div className="absolute w-full h-full">
           {/* life body */}
@@ -90,7 +89,7 @@ function About() {
             <img src={cityBanner} className="-z-10 w-[550px] opacity-50" />
             <h1 className="float-text-sm -mt-16">Life</h1>
             <motion.p
-              className="body mt-2 w-[25%]"
+              className="body mt-2 w-[45%]"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: 1,
@@ -98,11 +97,9 @@ function About() {
               }}
               exit={{ opacity: 0 }}
             >
-              I grew up in NYC from a chinese household. As a gen Z, I had
-              always been tech savvy growing up. I self taught myself
-              programming before University. Now with each new experience, I
-              often find myself retracing my steps, but I'm glad that I have a
-              foundation to work with.
+              I grew up in NYC from a chinese household. I've always loved
+              making and building things, which made sense of why I pursued a
+              career in SWE.
             </motion.p>
           </div>
 
@@ -122,10 +119,8 @@ function About() {
               exit={{ opacity: 0 }}
             >
               I am a student at Stony Brook University. I am pursuing a B.S. in
-              Technical Systems Management. The Technical Systems Management
-              major specializes in assessing technologies such as software
-              frameworks, architectures, and tech stacks in an interdisciplinary
-              study with Computer Science. Go seawolves!
+              Technical Systems Management with a discipline in Computer
+              Science.
             </motion.p>
           </div>
 
@@ -144,9 +139,9 @@ function About() {
               }}
               exit={{ opacity: 0 }}
             >
-              Outside of programming, I play the guitar! When I get confident
-              enough, maybe I can add an audio snippet for you to sample my
-              playing, just so I don't rupture your ears...
+              In my free time, I work on my side projects, learning and hopping
+              on the latest framework trends. Outside of programming, I enjoy
+              playing the guitar.
             </motion.p>
           </div>
         </div>
