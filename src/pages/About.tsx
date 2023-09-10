@@ -98,7 +98,7 @@ function About() {
               exit={{ opacity: 0 }}
             >
               I grew up in NYC from a chinese household. I've always loved
-              making and building things, which made sense of why I pursued a
+              making and building things, which make sense of why I pursue a
               career in SWE.
             </motion.p>
           </div>
