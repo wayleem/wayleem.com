@@ -9,6 +9,9 @@ import clinchoice3 from '../assets/video/clinchoice3.gif'
 import spot1 from '../assets/video/spot1.gif'
 import spot2 from '../assets/video/spot2.gif'
 import spot3 from '../assets/video/spot3.gif'
+import ghost_hunter_1 from '../assets/video/ghost-hunter-1.gif'
+import ghost_hunter_2 from '../assets/video/ghost-hunter-2.gif'
+import ghost_hunter_3 from '../assets/video/ghost-hunter-3.gif'
 import githubSVG from '../assets/icons/github.svg'
 import { useState } from 'react'
 
@@ -81,8 +84,8 @@ function VirtualTourContent() {
               </a>
             </li>
             <li>
-              <a href="#cycle" className="hover:text-base-100">
-                Cycle
+              <a href="#lifespan" className="hover:text-base-100">
+                Lifespan
               </a>
             </li>
             <li>
@@ -109,8 +112,8 @@ function VirtualTourContent() {
               structure, frameworks, and schedule to complete and deliver the
               final virtual tour product within the span of 3 months.
             </p>
-            <h1 id="cycle" className="h2">
-              Cycle
+            <h1 id="lifespan" className="h2">
+              Lifespan
             </h1>
             <p className="body">
               Responsibilities are delegated to each member of the team as the
@@ -145,8 +148,8 @@ function VirtualTourContent() {
               We showed the client each step of the developmental process and
               improvements up to its completion, to allow them to interject at
               any design choices and hear their feedback. We actively deploy the
-              application through its life cycle to allow the client to test the
-              virtual tour for themselves. Once completed, we continued to
+              application through its life lifespan to allow the client to test
+              the virtual tour for themselves. Once completed, we continued to
               communicate with the client with any improvements or features they
               would like before we ultimately present the project at the end of
               the semester.
@@ -189,7 +192,7 @@ function SpotContent() {
               <a href="#overview">Overview</a>
             </li>
             <li>
-              <a href="#cycle">Cycle</a>
+              <a href="#lifespan">Lifespan</a>
             </li>
             <li>
               <a href="#technical">Technical</a>
@@ -213,8 +216,8 @@ function SpotContent() {
               game functionalities to be demoed in 1 month.
             </p>
 
-            <h1 id="cycle" className="h2">
-              Cycle
+            <h1 id="lifespan" className="h2">
+              Lifespan
             </h1>
             <p className="body">
               I used Roblox Studio for my game development project because it
@@ -290,7 +293,7 @@ function GhostHunterContent() {
               <a href="#overview">Overview</a>
             </li>
             <li>
-              <a href="#cycle">Cycle</a>
+              <a href="#lifespan">Lifespan</a>
             </li>
             <li>
               <a href="#technical">Technical</a>
@@ -304,10 +307,17 @@ function GhostHunterContent() {
             <h1 id="overview" className="h2">
               Overview
             </h1>
-            <p className="body"></p>
+            <p className="body">
+              Solo rapid development of a mobile camera app prototype called
+              Ghost Hunter for a Stony Brook related course project. Built
+              around camera usage, the course challenged us to create a mobile
+              app out of a phone function within a month. Ghost Hunter is an app
+              that allows you to hunt and capture ghosts in your camera.
+              Achieved core game functionalities to be demoed in 1 month.
+            </p>
 
-            <h1 id="cycle" className="h2">
-              Cycle
+            <h1 id="lifespan" className="h2">
+              Lifespan
             </h1>
             <p className="body"></p>
             <h1 id="technical" className="h2">
@@ -316,7 +326,10 @@ function GhostHunterContent() {
             <p className="body"></p>
           </div>
         </div>
-        <div className="flex flex-col space-y-8"></div>
+        <div className="flex flex-col space-y-8">
+          <img src={ghost_hunter_1} />
+          <img src={ghost_hunter_2} />
+        </div>
       </div>
     </div>
   )
@@ -332,7 +345,7 @@ function ClinChoiceContent() {
               <a href="#overview">Overview</a>
             </li>
             <li>
-              <a href="#cycle">Cycle</a>
+              <a href="#lifespan">Lifespan</a>
             </li>
             <li>
               <a href="#technical">Technical</a>
@@ -356,8 +369,8 @@ function ClinChoiceContent() {
               IT vice president, a demo data server is created to replicate the
               usage of such frameworks to ClinChoice standards within 1 month.
             </p>
-            <h1 id="cycle" className="h2">
-              Cycle
+            <h1 id="lifespan" className="h2">
+              Lifespan
             </h1>
             <p className="body">
               ClinChoice's web applications is built with JavaScript and
