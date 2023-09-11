@@ -101,27 +101,28 @@ function Experience() {
           props.position
         } ${isMobile ? 'flex flex-row items-center' : 'flex flex-col'} `}
       >
-        {/* Displaying the image */}
+        {/* displaying the image */}
         <a
           href={props.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${isMobile ? 'mr-4' : ''}`}
+          className={`select-none ${isMobile ? 'mr-4' : ''}`}
         >
           <img
             src={props.img}
-            className={`object-cover rounded-lg mb-4 cursor-pointer ${
+            className={`object-cover rounded-lg mb-4 cursor-pointer select-none ${
               isMobile ? '' : 'w-full h-[200px]'
             }`}
           />
         </a>
-
+        {/* card name */}
         <div className="flex flex-col">
           <a href={props.url} target="_blank" rel="noopener noreferrer">
             <h3 className="subtitle-text font-semibold mb-2 cursor-pointer">
               {props.name}
             </h3>
           </a>
+          {/* technologies */}
           <div className="flex flex-wrap">
             {props.tools.map((tool, index) => (
               <span
@@ -167,6 +168,7 @@ function Experience() {
         >
           Experience
         </h1>
+        {/* categories */}
         <span className="flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">
           {Object.keys(xpCategories).map((category) => (
             <h2
