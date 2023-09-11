@@ -71,7 +71,7 @@ function About() {
 
       {/* about me content */}
       <motion.div
-        className="absolute inset-0 w-screen h-screen"
+        className="grid grid-rows-3 grid-cols-3 absolute inset-0 p-32 w-full h-full"
         initial={{ translateX: -2000 }}
         animate={{
           translateX: [-2000, 20, 0],
@@ -83,67 +83,62 @@ function About() {
         }}
         exit={{ translateY: -1200, transition: { duration: 0.2 } }}
       >
-        <div className="absolute w-full h-full">
-          {/* life body */}
-          <div className="absolute left-[10%] top-[20%]">
-            <img src={cityBanner} className="-z-10 w-[550px] opacity-50" />
-            <h1 className="float-text-sm -mt-16">Life</h1>
-            <motion.p
-              className="body mt-2 w-[45%]"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: { duration: 0.2, delay: 0.4 },
-              }}
-              exit={{ opacity: 0 }}
-            >
-              I grew up in NYC from a chinese household. I've always loved
-              making and building things, which make sense of why I pursue a
-              career in SWE.
-            </motion.p>
-          </div>
-
-          {/* education body */}
-          <div className="absolute right-[10%] top-[40%] w-[26%]">
-            <img src={sbuBanner} className="-ml-16 w-[450px]" />
-            <h1 className="font-subtitle text-4xl text-base-content -mt-2 ml-8">
-              Education
-            </h1>
-            <motion.p
-              className="body mt-2"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: { duration: 0.2, delay: 0.4 },
-              }}
-              exit={{ opacity: 0 }}
-            >
-              I am a student at Stony Brook University. I am pursuing a B.S. in
-              Technical Systems Management with a discipline in Computer
-              Science.
-            </motion.p>
-          </div>
-
-          {/* hobbies body */}
-          <div className="absolute left-[20%] top-[55%] w-[25%]">
-            <img src={guitarBanner} className="-ml-28 w-[800px]" />
-            <h1 className="font-subtitle text-4xl text-base-content -mt-32 ml-48">
-              Hobbies
-            </h1>
-            <motion.p
-              className="body mt-4"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                transition: { duration: 0.2, delay: 0.4 },
-              }}
-              exit={{ opacity: 0 }}
-            >
-              In my free time, I work on my side projects, learning and hopping
-              on the latest framework trends. Outside of programming, I enjoy
-              playing the guitar.
-            </motion.p>
-          </div>
+        {/* life body */}
+        <div className="row-start-1 col-start-1 mt-32">
+          <img src={cityBanner} className="-z-10 md:w-[550px] w- opacity-50" />
+          <h1 className="float-text-sm -mt-16">Life</h1>
+          <motion.p
+            className="body mt-2"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { duration: 0.2, delay: 0.4 },
+            }}
+            exit={{ opacity: 0 }}
+          >
+            I grew up in NYC from a chinese household. I've always loved making
+            and building things, which make sense of why I pursue a career in
+            SWE.
+          </motion.p>
+        </div>
+        {/* education body */}
+        <div className="row-start-2 col-start-3">
+          <img src={sbuBanner} className="-ml-16 w-[450px]" />
+          <h1 className="font-subtitle md:text-4xl text-base-content -mt-2 ml-8">
+            Education
+          </h1>
+          <motion.p
+            className="body mt-2"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { duration: 0.2, delay: 0.4 },
+            }}
+            exit={{ opacity: 0 }}
+          >
+            I am a student at Stony Brook University. I am pursuing a B.S. in
+            Technical Systems Management with a discipline in Computer Science.
+          </motion.p>
+        </div>
+        {/* hobbies body */}
+        <div className="row-start-3 col-start-2">
+          <h1 className="font-subtitle md:text-4xl text-base-content">
+            Hobbies
+          </h1>
+          <motion.p
+            className="body mt-4 -mb-8"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { duration: 0.2, delay: 0.4 },
+            }}
+            exit={{ opacity: 0 }}
+          >
+            In my free time, I work on my side projects, learning and hopping on
+            the latest framework trends. Outside of programming, I enjoy playing
+            the guitar.
+          </motion.p>
+          <img src={guitarBanner} className="md:w-[500px]" />
         </div>
       </motion.div>
     </div>
