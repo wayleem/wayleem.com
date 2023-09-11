@@ -67,6 +67,7 @@ function Home() {
       }}
       exit={{ scale: 0, transition: { duration: 0.1 } }}
     >
+      {/* welcome */}
       <div className="flex flex-row justify-center h1 mt-[10%] pointer-events-auto">
         {welcomeMessages[languageIndex].message.map((letter, index) => (
           <h1
@@ -78,6 +79,7 @@ function Home() {
           </h1>
         ))}
       </div>
+      {/* hint */}
       <h2 className="subtitle-text mt-[25%]">
         (You can rotate the cube by dragging)
       </h2>
