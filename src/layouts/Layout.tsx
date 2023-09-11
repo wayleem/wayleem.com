@@ -11,7 +11,7 @@ function Layout() {
     <>
       {/* threejs canvas */}
       <div
-        className={`absolute inset-0 w-full h-full ${
+        className={`absolute inset-0 w-full ${
           isHomePage ? 'block' : 'hidden md:block'
         }`}
       >

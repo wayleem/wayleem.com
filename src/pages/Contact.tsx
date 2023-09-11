@@ -111,7 +111,7 @@ function Contact() {
     <div>
       {/* top menu */}
       <motion.div
-        className="flex flex-col pointer-events-auto"
+        className="flex flex-col"
         initial={{ translateY: -200 }}
         animate={{
           translateY: [-200, 20, 0],
@@ -120,7 +120,7 @@ function Contact() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-16 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
+          className="h1 mt-16 w-fit pointer-events-auto self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
           onClick={() => {
             if (buttonDisabled) {
               const switchOn = new Audio(switchOnMP3)
@@ -142,7 +142,7 @@ function Contact() {
               href="mailto:wayleemh@gmail.com?subject=Contact%20Request"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-pointer hover:underline active:font-semibold"
+              className="cursor-pointer pointer-events-auto hover:underline active:font-semibold"
             >
               email
             </a>
@@ -150,7 +150,7 @@ function Contact() {
           </span>
           <span className="flex flex-row space-x-2">
             <a
-              className="cursor-pointer hover:underline active:font-semibold"
+              className="cursor-pointer pointer-events-auto hover:underline active:font-semibold"
               onClick={() => saveAs(resumePDF, 'williamresume')}
             >
               resume

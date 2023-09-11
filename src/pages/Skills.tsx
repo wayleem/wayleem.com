@@ -264,7 +264,7 @@ function Skills() {
     <div>
       {/* top menu */}
       <motion.div
-        className="flex flex-col pointer-events-auto"
+        className="flex flex-col"
         initial={{ translateY: -200 }}
         animate={{
           translateY: [-200, 20, 0],
@@ -273,7 +273,7 @@ function Skills() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-16 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
+          className="h1 mt-16 w-fit pointer-events-auto self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
           onClick={() => {
             const pop = new Audio(popMP3)
             pop.play()
@@ -287,7 +287,7 @@ function Skills() {
           {Object.keys(skillCategories).map((category) => (
             <h2
               key={category}
-              className={`cursor-pointer hover:underline ${
+              className={`cursor-pointer pointer-events-auto hover:underline ${
                 category === selectedCategory
                   ? 'font-semibold text-base-100'
                   : 'hover:text-base-100 text-base-content'

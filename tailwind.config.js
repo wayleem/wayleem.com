@@ -46,6 +46,10 @@ export default {
       body: ['Inter', 'sans-serif'],
     },
     extend: {
+      screens: {
+        short: { raw: '(min-height: 620px)' },
+        tall: { raw: '(min-height: 1024px)' },
+      },
       keyframes: {
         expand: {
           '0%': { opacity: '0', transform: 'scale(0)' },
