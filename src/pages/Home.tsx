@@ -58,17 +58,17 @@ function Home() {
     setLanguageIndex((prevIndex) => (prevIndex + 1) % welcomeMessages.length)
   }
   return (
-    <motion.div
-      className="text-center"
-      initial={{ scale: 0 }}
-      animate={{
-        scale: [0, 1.05, 1],
-        transition: { duration: 0.8, ease: 'easeOut' },
-      }}
-      exit={{ scale: 0, transition: { duration: 0.1 } }}
-    >
+    <div>
       {/* welcome */}
-      <div className="flex flex-row justify-center h1 mt-[10%] pointer-events-auto">
+      <motion.div
+        className="absolute flex flex-row justify-center h1 inset-x-0 top-[20%] pointer-events-auto"
+        initial={{ scale: 0 }}
+        animate={{
+          scale: [0, 1.05, 1],
+          transition: { duration: 0.8, ease: 'easeOut' },
+        }}
+        exit={{ scale: 0, transition: { duration: 0.1 } }}
+      >
         {welcomeMessages[languageIndex].message.map((letter, index) => (
           <h1
             key={index}
@@ -78,12 +78,20 @@ function Home() {
             {letter}
           </h1>
         ))}
-      </div>
+      </motion.div>
       {/* hint */}
-      <h2 className="subtitle-text mt-[25%]">
+      <motion.h2
+        className="subtitle-text text-center absolute inset-x-0 bottom-[20%]"
+        initial={{ scale: 0 }}
+        animate={{
+          scale: [0, 1.05, 1],
+          transition: { duration: 0.8, ease: 'easeOut' },
+        }}
+        exit={{ scale: 0, transition: { duration: 0.1 } }}
+      >
         (You can rotate the cube by dragging)
-      </h2>
-    </motion.div>
+      </motion.h2>
+    </div>
   )
 }
 
