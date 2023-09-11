@@ -106,11 +106,12 @@ function Experience() {
           href={props.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`select-none ${isMobile ? 'mr-4' : ''}`}
+          className={`${isMobile ? 'mr-4' : ''}`}
         >
           <img
             src={props.img}
-            className={`object-cover rounded-lg mb-4 cursor-pointer select-none ${
+            draggable={false}
+            className={`object-cover rounded-lg mb-4 cursor-pointer ${
               isMobile ? '' : 'w-full h-[200px]'
             }`}
           />
