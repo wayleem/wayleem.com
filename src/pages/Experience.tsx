@@ -41,7 +41,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       name: 'Virtual Tour',
       type: 'project',
       date: 'mar2023-may2023',
-      position: 'left-[20%] top-[15%]',
+      position: 'row-start-1 col-start-1',
       url: 'https://github.com/wayleem/virtual-tour',
       img: virtual_tour_1,
       tools: ['TS', 'React', 'Redux.js', 'Node.js', 'panolens.js'],
@@ -53,7 +53,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       name: 'Spot',
       type: 'project',
       date: 'nov2022',
-      position: 'left-[20%] top-[50%]',
+      position: 'row-start-2 col-start-1',
       url: 'https://github.com/wayleem/spot',
       img: spot1,
       tools: ['TS', 'Roact', 'Rodux'],
@@ -65,7 +65,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       name: 'Ghost Hunter',
       type: 'project',
       date: 'dec2022',
-      position: 'right-[20%] top-[15%]',
+      position: 'row-start-1 col-start-2',
       url: 'https://github.com/wayleem/ghost-hunter',
       img: ghost_hunter_1,
       tools: ['TS', 'React Native', 'Redux.js', 'Node.js', 'Expo'],
@@ -78,7 +78,7 @@ const xpCategories: Record<CategoryKeys, XP[]> = {
       name: 'ClinChoice',
       type: 'intern',
       date: 'jul2023-aug2023',
-      position: 'right-[20%] top-[50%]',
+      position: 'row-start-2 col-start-2',
       url: 'https://github.com/wayleem/demo-data-server',
       img: clinchoice1,
       tools: ['TS', 'React', 'Redux.js', 'Node.js', 'ApexCharts.js'],
@@ -97,7 +97,7 @@ function Experience() {
 
     return (
       <div
-        className={`absolute bg-inactive p-4 m-4 rounded-lg shadow-lg w-[400px] h-[400px] pointer-events-auto ${
+        className={`bg-inactive p-4 m-4 rounded-lg shadow-lg xl:w-[400px] xl:h-[400px] w-[200px] h-[200px] pointer-events-auto xl:overflow-hidden overflow-y-scroll ${
           props.position
         } ${isMobile ? 'flex flex-row items-center' : 'flex flex-col'} `}
       >
@@ -112,12 +112,12 @@ function Experience() {
             src={props.img}
             draggable={false}
             className={`object-cover rounded-lg mb-4 cursor-pointer ${
-              isMobile ? '' : 'w-full h-[200px]'
+              isMobile ? '' : 'w-full xl:h-[200px]'
             }`}
           />
         </a>
         {/* card name */}
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           <a href={props.url} target="_blank" rel="noopener noreferrer">
             <h3 className="subtitle-text font-semibold mb-2 cursor-pointer">
               {props.name}
@@ -151,7 +151,7 @@ function Experience() {
     <div>
       {/* top menu */}
       <motion.div
-        className="flex flex-col pointer-events-auto"
+        className="flex flex-col"
         initial={{ translateY: -200 }}
         animate={{
           translateY: [-200, 20, 0],
@@ -160,7 +160,7 @@ function Experience() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-16 w-fit self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
+          className="h1 mt-16 w-fit pointer-events-auto self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
           onClick={() => {
             const pop = new Audio(popMP3)
             pop.play()
@@ -174,7 +174,7 @@ function Experience() {
           {Object.keys(xpCategories).map((category) => (
             <h2
               key={category}
-              className={`cursor-pointer hover:underline ${
+              className={`cursor-pointer pointer-events-auto hover:underline ${
                 category === selectedCategory
                   ? 'font-semibold text-base-100'
                   : 'hover:text-base-100 text-base-content'
@@ -188,30 +188,35 @@ function Experience() {
       </motion.div>
 
       {/* projects and work items */}
-      <motion.div
-        className="absolute inset-0 w-screen h-screen"
-        initial={{ scale: 0 }}
-        animate={{ scale: [0, 1.05, 1], transition: { duration: 0.5 } }}
-        exit={{
-          scale: 0,
-          transition: { duration: 0.2, times: [0, 0.8, 1], ease: 'easeInOut' },
-        }}
-      >
-        {Object.entries(xpCategories).map(([category, experiences]) => (
-          <ul
-            key={category}
-            className={`absolute w-full h-full ${
-              selectedCategory === category || selectedCategory === 'all'
-                ? 'animate-shoot-out'
-                : 'animate-shoot-in'
-            }`}
+
+      {Object.entries(xpCategories).map(([category, experiences]) => (
+        <ul
+          key={category}
+          className={`absolute inset-0 w-screen ${
+            selectedCategory === category || selectedCategory === 'all'
+              ? 'animate-shoot-out'
+              : 'animate-shoot-in'
+          }`}
+        >
+          <motion.div
+            className="grid grid-rows-2 grid-cols-2 gap-x-8 gap-y-8 my-16 justify-items-center w-full"
+            initial={{ scale: 0 }}
+            animate={{ scale: [0, 1.05, 1], transition: { duration: 0.5 } }}
+            exit={{
+              scale: 0,
+              transition: {
+                duration: 0.2,
+                times: [0, 0.8, 1],
+                ease: 'easeInOut',
+              },
+            }}
           >
             {experiences.map((xp) => (
               <XPItem key={xp.xpKey} {...xp} />
             ))}
-          </ul>
-        ))}
-      </motion.div>
+          </motion.div>
+        </ul>
+      ))}
     </div>
   )
 }
