@@ -17,27 +17,27 @@ html[data-theme='dark'] {
 }
 
 .h1 {
-  @apply lg:text-6xl text-4xl font-header text-readable tracking-wider;
+  @apply 2xl:text-6xl text-4xl font-header text-readable tracking-wider;
 }
 
 .h2 {
-  @apply font-header lg:text-4xl text-readable tracking-wider;
+  @apply font-header 2xl:text-4xl text-readable tracking-wider;
 }
 
 .subtitle-text {
-  @apply lg:text-xl font-subtitle text-readable tracking-wide;
+  @apply 2xl:text-xl font-subtitle text-readable tracking-wide;
 }
 
 .body {
-  @apply lg:text-lg font-body text-readable tracking-wider leading-relaxed;
+  @apply 2xl:text-lg font-body text-readable tracking-wider leading-relaxed;
 }
 
-.float-text-lg {
-  @apply absolute font-subtitle lg:text-8xl text-base-100 opacity-30;
+.float-text-2xl {
+  @apply absolute font-subtitle 2xl:text-8xl text-base-100 opacity-30;
 }
 
 .float-text-sm {
-  @apply absolute font-subtitle lg:text-4xl text-base-content hover:text-base-100 pointer-events-auto;
+  @apply absolute font-subtitle 2xl:text-4xl text-base-content hover:text-base-100 pointer-events-auto;
 }
 
 ::-webkit-scrollbar {

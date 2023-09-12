@@ -97,7 +97,7 @@ function Experience() {
 
     return (
       <div
-        className={`bg-inactive p-4 m-4 rounded-lg shadow-lg xl:w-[400px] xl:h-[400px] w-[200px] h-[200px] pointer-events-auto xl:overflow-hidden overflow-y-scroll ${
+        className={`bg-inactive p-4 m-4 rounded-lg shadow-lg 2xl:w-[400px] 2xl:h-[400px] w-[200px] h-[200px] pointer-events-auto 2xl:overflow-hidden overflow-y-scroll ${
           props.position
         } ${isMobile ? 'flex flex-row items-center' : 'flex flex-col'} `}
       >
@@ -112,7 +112,7 @@ function Experience() {
             src={props.img}
             draggable={false}
             className={`object-cover rounded-lg mb-4 cursor-pointer ${
-              isMobile ? '' : 'w-full xl:h-[200px]'
+              isMobile ? '' : 'w-full 2xl:h-[200px]'
             }`}
           />
         </a>
@@ -199,7 +199,7 @@ function Experience() {
           }`}
         >
           <motion.div
-            className="grid grid-rows-2 grid-cols-2 gap-x-8 gap-y-8 my-16 justify-items-center w-full"
+            className="grid grid-rows-2 grid-cols-2 gap-x-8 gap-y-8 my-16 justify-items-center w-full overflow-y-scroll"
             initial={{ scale: 0 }}
             animate={{ scale: [0, 1.05, 1], transition: { duration: 0.5 } }}
             exit={{

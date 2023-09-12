@@ -85,7 +85,7 @@ function About() {
       >
         {/* life body */}
         <div className="row-start-1 col-start-1 mt-32">
-          <img src={cityBanner} className="-z-10 md:w-[550px] w- opacity-50" />
+          <img src={cityBanner} className="-z-10 2xl:w-[550px] opacity-50" />
           <h1 className="float-text-sm -mt-16">Life</h1>
           <motion.p
             className="body mt-2"
@@ -103,8 +103,8 @@ function About() {
         </div>
         {/* education body */}
         <div className="row-start-2 col-start-3">
-          <img src={sbuBanner} className="-ml-16 w-[450px]" />
-          <h1 className="font-subtitle md:text-4xl text-base-content -mt-2 ml-8">
+          <img src={sbuBanner} className="-ml-16 2xl:w-[450px]" />
+          <h1 className="font-subtitle 2xl:text-4xl text-base-content -mt-2 ml-8">
             Education
           </h1>
           <motion.p
@@ -122,7 +122,7 @@ function About() {
         </div>
         {/* hobbies body */}
         <div className="row-start-3 col-start-2">
-          <h1 className="font-subtitle md:text-4xl text-base-content">
+          <h1 className="font-subtitle 2xl:text-4xl text-base-content">
             Hobbies
           </h1>
           <motion.p
@@ -138,7 +138,7 @@ function About() {
             the latest framework trends. Outside of programming, I enjoy playing
             the guitar.
           </motion.p>
-          <img src={guitarBanner} className="md:w-[500px]" />
+          <img src={guitarBanner} className="2xl:w-[500px]" />
         </div>
       </motion.div>
     </div>
