@@ -4,7 +4,6 @@ import virtual_tour_1 from '../assets/video/virtual-tour-1.gif'
 import clinchoice1 from '../assets/video/clinchoice1.gif'
 import spot1 from '../assets/video/spot1.gif'
 import ghost_hunter_1 from '../assets/video/ghost-hunter-1.gif'
-import githubSVG from '../assets/icons/github.svg'
 import { useState } from 'react'
 
 type CategoryKeys = 'projects' | 'jobs'
