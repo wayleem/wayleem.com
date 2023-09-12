@@ -54,10 +54,8 @@ function Home() {
   const poof = new Audio(poofMP3)
 
   const toggleLanguage = () => {
-    if (window.innerWidth > 768) {
-      poof.play()
-      setLanguageIndex((prevIndex) => (prevIndex + 1) % welcomeMessages.length)
-    }
+    if (window.innerWidth > 768) poof.play()
+    setLanguageIndex((prevIndex) => (prevIndex + 1) % welcomeMessages.length)
   }
   return (
     <div>

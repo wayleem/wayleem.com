@@ -82,11 +82,15 @@ function CubeScene() {
     switch (e.object.name) {
       case 'light':
         setTheme('light')
-        if (theme !== e.object.name) switchOn.play()
+        if (theme !== e.object.name) {
+          if (window.innerWidth > 768) switchOn.play()
+        }
         break
       case 'dark':
         setTheme('dark')
-        if (theme !== e.object.name) switchOff.play()
+        if (theme !== e.object.name) {
+          if (window.innerWidth > 768) switchOff.play()
+        }
         break
       case 'about':
         navigate('/about')
