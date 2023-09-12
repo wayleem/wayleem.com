@@ -21,7 +21,7 @@ html[data-theme='dark'] {
 }
 
 .h2 {
-  @apply font-header 2xl:text-4xl text-readable tracking-wider;
+  @apply font-header 2xl:text-4xl text-2xl text-readable tracking-wider;
 }
 
 .subtitle-text {
@@ -30,14 +30,6 @@ html[data-theme='dark'] {
 
 .body {
   @apply 2xl:text-lg font-body text-readable tracking-wider leading-relaxed;
-}
-
-.float-text-2xl {
-  @apply absolute font-subtitle 2xl:text-8xl text-base-100 opacity-30;
-}
-
-.float-text-sm {
-  @apply absolute font-subtitle 2xl:text-4xl text-base-content hover:text-base-100 pointer-events-auto;
 }
 
 ::-webkit-scrollbar {
