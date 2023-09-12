@@ -93,7 +93,7 @@ function Contact() {
   // social links
   function HandleItem(props: Handle) {
     return (
-      <div className={`subtitle-text ${props.position}`}>
+      <div className={`body ${props.position}`}>
         <a
           href={props.url}
           target="_blank"
@@ -101,7 +101,7 @@ function Contact() {
           className="pointer-events-auto flex flex-row space-x-2 w-fit transform transition-all md:hover:scale-125"
         >
           <img src={props.icon} className="w-8 select-none" />
-          <h2 className="cursor-pointer md:active:font-semibold font-semibold md:font-normal">
+          <h2 className="cursor-pointer md:active:font-semibold md:font-normal">
             {props.name}
           </h2>
         </a>
@@ -136,7 +136,7 @@ function Contact() {
             }
           }}
         >
-          Contact me
+          CONTACT ME
         </h1>
 
         {/* create email and resume download */}

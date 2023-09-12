@@ -9,8 +9,8 @@ function About() {
   const [greetingIndex, setGreetingIndex] = useState(0)
   const [nameIndex, setNameIndex] = useState(0)
 
-  const greetings = ['Hello,', 'Wassup,', 'Hey!', 'Hi,']
-  const names = ["I'm William.", "It's William!", 'William here.']
+  const greetings = ['HELLO,', 'WASSUP,', 'HEY!', 'HI,']
+  const names = ["I'M WILLIAM.", "IT'S WILLIAM!", 'WILLIAM HERE.']
 
   const poof = new Audio(popMP3)
 
@@ -30,52 +30,10 @@ function About() {
   // easter eggs ^
   //-------------------------------------------------------------------------
   return (
-    <div className="p-4 md:-mt-10 flex flex-col">
-      {/* greeting card */}
-      <div className="flex flex-col md:text-center text-start">
-        <motion.div
-          className="md:mt-16 w-fit md:self-center self-start pointer-events-auto"
-          initial={{ translateY: -200 }}
-          animate={{
-            translateY: [-200, 20, 0],
-            transition: {
-              duration: 0.5,
-              times: [0, 0.8, 1],
-              ease: 'easeInOut',
-            },
-          }}
-          exit={{ translateY: -200, transition: { duration: 0.2 } }}
-        >
-          <span className="h1 w-fit space-y-4">
-            <h1
-              className="transform transition-all md:hover:text-base-100 md:hover:scale-105 md:active:animate-pop-in-out"
-              onClick={toggleGreeting}
-            >
-              {greetings[greetingIndex]}
-            </h1>
-            <h1
-              className="transform transition-all md:hover:text-base-100 md:hover:scale-105 md:active:animate-pop-in-out"
-              onClick={toggleName}
-            >
-              {names[nameIndex]}
-            </h1>
-          </span>
-        </motion.div>
-
-        <motion.p
-          className="body mt-6 md:w-[30%] w-full md:self-center self-start"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.2, delay: 0.4 } }}
-          exit={{ opacity: 0 }}
-        >
-          Welcome to my portfolio. I am a student developer pursuing a career in
-          software engineering.
-        </motion.p>
-      </div>
-
+    <div className="p-8 md:-mt-10 flex flex-col">
       {/* about me content */}
       <motion.div
-        className="flex flex-col space-y-8 md:mt-0 -mt-16 md:flex-none md:grid grid-rows-3 grid-cols-3 md:absolute inset-0 md:p-32 w-full h-full"
+        className="flex flex-col space-y-8 md:flex-none md:grid md:absolute grid-rows-3 grid-cols-3 md:px-32 md:pb-32 w-full inset-0"
         initial={{ translateX: -2000 }}
         animate={{
           translateX: [-2000, 20, 0],
@@ -87,18 +45,59 @@ function About() {
         }}
         exit={{ translateY: -1200, transition: { duration: 0.2 } }}
       >
+        {/* greeting card */}
+        <div className="flex flex-col md:text-center text-start row-start-1 col-start-2">
+          <motion.div
+            className="md:mt-16 w-fit md:self-center pointer-events-auto"
+            initial={{ translateY: -200 }}
+            animate={{
+              translateY: [-200, 20, 0],
+              transition: {
+                duration: 0.5,
+                times: [0, 0.8, 1],
+                ease: 'easeInOut',
+              },
+            }}
+            exit={{ translateY: -200, transition: { duration: 0.2 } }}
+          >
+            <span className="h2 w-fit space-y-4">
+              <h1
+                className="transform transition-all md:hover:text-base-100 md:hover:scale-105 md:active:animate-pop-in-out"
+                onClick={toggleGreeting}
+              >
+                {greetings[greetingIndex]}
+              </h1>
+              <h1
+                className="transform transition-all md:hover:text-base-100 md:hover:scale-105 md:active:animate-pop-in-out"
+                onClick={toggleName}
+              >
+                {names[nameIndex]}
+              </h1>
+            </span>
+          </motion.div>
+
+          <motion.p
+            className="body mt-6 -mb-16 md:mb-0 w-full md:self-center self-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.2, delay: 0.4 } }}
+            exit={{ opacity: 0 }}
+          >
+            Welcome to my portfolio. I am a student developer pursuing a career
+            in software engineering.
+          </motion.p>
+        </div>
         {/* life body */}
-        <div className="row-start-1 col-start-1 md:mt-32">
+        <div className="row-start-2 col-start-1 self-center">
           <img
             src={cityBanner}
-            className="-z-10 2xl:w-[550px] opacity-50"
+            className="-z-10 2xl:w-[550px] mb-4 lg:mb-0 opacity-50"
             draggable={false}
           />
-          <h1 className="absolute font-subtitle text-4xl text-readable -mt-16">
+          <h1 className="font-subtitle md:text-4xl text-3xl text-readable -mt-16">
             Life
           </h1>
           <motion.p
-            className="body mt-2"
+            className="body mt-4 lg:mt-8 2xl:mb-16"
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
@@ -106,19 +105,19 @@ function About() {
             }}
             exit={{ opacity: 0 }}
           >
-            I grew up in NYC from a chinese household. I've always loved making
+            I grew up in NYC from a Chinese household. I've always loved making
             and building things, which make sense of why I pursue a career in
             SWE.
           </motion.p>
         </div>
         {/* education body */}
-        <div className="flex flex-col row-start-2 col-start-3">
+        <div className="flex flex-col row-start-2 col-start-3 self-center">
           <img
             src={sbuBanner}
-            className="md:-ml-16 2xl:w-[450px] md:mt-0 mt-4 order-3 md:order-none"
+            className="2xl:w-[450px] md:mt-0 md:mb-2 mt-4 order-3 md:order-none"
             draggable={false}
           />
-          <h1 className="font-subtitle text-4xl text-readable md:-mt-2 md:ml-8 order-1 md:order-none">
+          <h1 className="font-subtitle md:text-4xl text-3xl text-readable md:-mt-2 order-1 md:order-none">
             Education
           </h1>
           <motion.p
@@ -136,9 +135,11 @@ function About() {
         </div>
         {/* hobbies body */}
         <div className="row-start-3 col-start-2">
-          <h1 className="font-subtitle text-4xl text-readable">Hobbies</h1>
+          <h1 className="font-subtitle md:text-4xl text-3xl text-readable">
+            Hobbies
+          </h1>
           <motion.p
-            className="body mt-4 md:-mb-8 -mb-12"
+            className="body mt-4 -mb-4 xl:-mb-12 md:-mb-4"
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,

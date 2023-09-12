@@ -2,7 +2,7 @@ import { Canvas, ThreeEvent, useLoader } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import {
   PlaneGeometry,
-  MeshBasicMaterial,
+  MeshStandardMaterial,
   Mesh,
   DoubleSide,
   TextureLoader,
@@ -53,7 +53,7 @@ function CubeScene() {
     {} as Record<string, Texture>
   )
   const createMaterial = (color: string, map: Texture) => {
-    return new MeshBasicMaterial({
+    return new MeshStandardMaterial({
       color,
       map,
       side: DoubleSide,
@@ -67,7 +67,7 @@ function CubeScene() {
       [`highlight_${key}`]: createMaterial('#e3b19f', texture),
       [`default_${key}`]: createMaterial('#f5d4c9', texture),
     }),
-    {} as Record<string, MeshBasicMaterial>
+    {} as Record<string, MeshStandardMaterial>
   )
 
   // navigation ------------------------------------------
@@ -143,8 +143,12 @@ function CubeScene() {
         position: [3, 3, 3],
       }}
     >
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
+      <ambientLight intensity={2} />
+      <directionalLight
+        position={[2, 3, 1]}
+        target-position={[0, 0, 0.5]}
+        intensity={2}
+      />
       {/* makes up a cube */}
       {meshes.map((mesh) => (
         <mesh

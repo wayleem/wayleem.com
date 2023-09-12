@@ -41,7 +41,7 @@ export default {
   },
   theme: {
     fontFamily: {
-      header: ['Comfortaa', 'sans-serif'],
+      header: ['Quicksand', 'sans-serif'],
       subtitle: ['Quicksand', 'sans-serif'],
       body: ['Inter', 'sans-serif'],
     },

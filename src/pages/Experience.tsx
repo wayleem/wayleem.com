@@ -96,7 +96,7 @@ function Experience() {
 
     return (
       <div
-        className={`bg-inactive p-4 m-4 rounded-lg shadow-lg md:w-[350px] md:h-[350px] w-[250px] h-[300px] pointer-events-auto ${
+        className={`bg-inactive p-4 m-4 rounded-lg shadow-lg lg:w-[350px] lg:h-[350px] w-[250px] h-[300px] pointer-events-auto ${
           props.position
         } ${isMobile ? 'flex flex-row items-center' : 'flex flex-col'} `}
       >
@@ -111,7 +111,7 @@ function Experience() {
             src={props.img}
             draggable={false}
             className={`object-cover rounded-lg mb-4 cursor-pointer ${
-              isMobile ? '' : 'w-full md:h-[200px]'
+              isMobile ? '' : 'w-full lg:h-[200px]'
             }`}
           />
         </a>
@@ -166,7 +166,7 @@ function Experience() {
             toggleCategory('all')
           }}
         >
-          Experience
+          EXPERIENCE
         </h1>
         {/* categories */}
         <span className="hidden md:flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">

@@ -58,7 +58,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       icon: typescriptSVG,
       type: 'language',
       description: { experience: 'main choice of language', year: '4+ years' },
-      position: 'md:row-start-2 md:col-start-2 md:justify-self-center',
+      position:
+        'md:row-start-2 md:col-start-2 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'javascript',
@@ -70,7 +71,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'proficient through typescript and experienced in associated frameworks',
       },
-      position: 'md:row-start-3 md:col-start-3 md:justify-self-center',
+      position:
+        'md:row-start-3 md:col-start-3 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'html_css',
@@ -81,7 +83,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '4+ years',
         experience: 'used in all my web projects',
       },
-      position: 'md:row-start-4 md:col-start-1 md:justify-self-center',
+      position:
+        'md:row-start-4 md:col-start-1 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'java',
@@ -93,7 +96,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'language used in data structures course and object-orientated programming courses',
       },
-      position: 'md:row-start-5 md:col-start-4 md:justify-self-center',
+      position:
+        'md:row-start-5 md:col-start-4 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'c',
@@ -152,7 +156,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience: 'experience ranges through all my js/ts projects',
         year: '4+ years',
       },
-      position: 'md:row-start-2 md:col-start-4 md:justify-self-center',
+      position:
+        'md:row-start-2 md:col-start-4 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'reactjs',
@@ -163,7 +168,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '4+ years',
         experience: 'used in all my web projects',
       },
-      position: 'md:row-start-3 md:col-start-1 md:justify-self-center',
+      position:
+        'md:row-start-3 md:col-start-1 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'tailwindcss',
@@ -174,7 +180,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '2+ years',
         experience: 'main choice of style customization',
       },
-      position: 'md:row-start-5 md:col-start-2 md:justify-self-center',
+      position:
+        'md:row-start-5 md:col-start-2 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'threejs',
@@ -211,7 +218,8 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'experienced with collaborative and independent project version control',
       },
-      position: 'md:row-start-4 md:col-start-3 md:justify-self-center',
+      position:
+        'md:row-start-4 md:col-start-3 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'blender',
@@ -276,7 +284,7 @@ function Skills() {
             }
           }}
         >
-          Skills
+          SKILLS
         </h1>
         {/* languages, frameworks, other */}
         <span className="hidden md:flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">

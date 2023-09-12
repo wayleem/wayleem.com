@@ -57,20 +57,13 @@ function Layout() {
             to="/"
           />
 
-          <span className="md:block hidden subtitle-text">
-            {location.pathname}
+          <span className="md:block hidden font-subtitle md:text-xl text-base-content">
+            &nbsp;{location.pathname}
           </span>
         </motion.div>
       </AnimatePresence>
 
       {/* footer */}
-      <h1
-        className={`absolute md:block text-center md:text-start mb-2 md:ml-2 font-subtitle text-xs md:text-sm inset-x-0 md:left-0 bottom-0 z-20 ${
-          isHomePage ? 'block' : 'hidden'
-        }`}
-      >
-        Copyright © 2023 William Huang.
-      </h1>
     </>
   )
 }

@@ -6,15 +6,10 @@ function Home() {
   const [languageIndex, setLanguageIndex] = useState(0)
 
   const welcomeMessages = [
-    { lang: 'English', message: ['W', 'e', 'l', 'c', 'o', 'm', 'e'] },
-    {
-      lang: 'German',
-      message: ['W', 'i', 'l', 'l', 'k', 'o', 'm', 'm', 'e', 'n'],
-    },
-    { lang: 'Swedish', message: ['V', 'ä', 'l', 'k', 'o', 'm', 'm', 'e', 'n'] },
+    { lang: 'English', message: ['W', 'E', 'L', 'C', 'O', 'M', 'E'] },
     {
       lang: 'Spanish',
-      message: ['B', 'i', 'e', 'n', 'v', 'e', 'n', 'i', 'd', 'o'],
+      message: ['B', 'I', 'E', 'N', 'V', 'E', 'N', 'I', 'D', 'O'],
     },
     { lang: 'Chinese', message: ['欢', '迎'] },
 
@@ -48,6 +43,10 @@ function Home() {
         'т',
         'ь',
       ],
+    },
+    {
+      lang: 'German',
+      message: ['W', 'I', 'L', 'L', 'K', 'O', 'M', 'M', 'E', 'N'],
     },
   ]
 

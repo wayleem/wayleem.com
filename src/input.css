@@ -17,11 +17,11 @@ html[data-theme='dark'] {
 }
 
 .h1 {
-  @apply 2xl:text-6xl text-4xl font-header text-readable tracking-wider;
+  @apply 2xl:text-6xl text-4xl font-semibold  font-header text-readable tracking-wider;
 }
 
 .h2 {
-  @apply font-header 2xl:text-4xl text-2xl text-readable tracking-wider;
+  @apply font-header font-semibold 2xl:text-4xl text-2xl text-readable tracking-wider;
 }
 
 .subtitle-text {
