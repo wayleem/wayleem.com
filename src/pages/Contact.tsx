@@ -28,7 +28,7 @@ const handles: Handle[] = [
     caption: 'wayleem',
     icon: githubSVG,
     url: 'https://github.com/wayleem',
-    position: 'left-[25%] top-[30%]',
+    position: 'md:row-start-1 md:col-start-1',
   },
   {
     handleKey: 'linkedin',
@@ -36,7 +36,7 @@ const handles: Handle[] = [
     caption: 'william huang',
     icon: linkedinSVG,
     url: 'https://linkedin.com/in/will-huang2/',
-    position: 'left-[20%] top-[50%]',
+    position: 'md:row-start-1 md:col-start-2',
   },
   {
     handleKey: 'twitter',
@@ -44,7 +44,7 @@ const handles: Handle[] = [
     caption: 'wayleemh',
     icon: twitterSVG,
     url: 'https://twitter.com/wayleemh',
-    position: 'right-[25%] top-[30%]',
+    position: 'md:row-start-2 md:col-start-1',
   },
   {
     handleKey: 'discord',
@@ -52,7 +52,7 @@ const handles: Handle[] = [
     caption: 'my community',
     icon: discordSVG,
     url: 'https://discord.gg/pThXSZtyVV',
-    position: 'right-[20%] top-[50%]',
+    position: 'md:row-start-2 md:col-start-2',
   },
 ]
 
@@ -93,17 +93,19 @@ function Contact() {
   // social links
   function HandleItem(props: Handle) {
     return (
-      <div className={`float-text-sm ${props.position}`}>
+      <div className={`subtitle-text ${props.position}`}>
         <a
           href={props.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-row space-x-2 w-fit transform transition-all hover:scale-125"
+          className="pointer-events-auto flex flex-row space-x-2 w-fit transform transition-all md:hover:scale-125"
         >
           <img src={props.icon} className="w-8 select-none" />
-          <h2 className="cursor-pointer active:font-semibold">{props.name}</h2>
+          <h2 className="cursor-pointer md:active:font-semibold font-semibold md:font-normal">
+            {props.name}
+          </h2>
         </a>
-        <h3 className="ml-14 text-sm">{props.caption}</h3>
+        <h3 className="hidden md:block ml-14 text-sm">{props.caption}</h3>
       </div>
     )
   }
@@ -120,29 +122,31 @@ function Contact() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-16 w-fit pointer-events-auto self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
+          className="h2 mt-16 w-fit pointer-events-auto self-center md:hover:text-base-100 transform transition-all md:hover:scale-105 md:active:animate-pop-in-out"
           onClick={() => {
-            if (buttonDisabled) {
-              const switchOn = new Audio(switchOnMP3)
-              switchOn.play()
-              return
+            if (window.innerWidth > 768) {
+              if (buttonDisabled) {
+                const switchOn = new Audio(switchOnMP3)
+                switchOn.play()
+                return
+              }
+              const pop = new Audio(popMP3)
+              pop.play()
+              _playFly()
             }
-            const pop = new Audio(popMP3)
-            pop.play()
-            _playFly()
           }}
         >
           Contact me
         </h1>
 
         {/* create email and resume download */}
-        <span className="flex flex-row mt-2 justify-center font-body space-x-6 decoration-2 underline-offset-2">
+        <span className="flex flex-row md:mt-2 mt-32 justify-center font-body md:text-base text-xl space-x-6 decoration-2 underline-offset-2">
           <span className="flex flex-row space-x-2">
             <a
               href="mailto:wayleemh@gmail.com?subject=Contact%20Request"
               target="_blank"
               rel="noopener noreferrer"
-              className="cursor-pointer pointer-events-auto hover:underline active:font-semibold"
+              className="cursor-pointer pointer-events-auto md:hover:underline active:font-semibold"
             >
               email
             </a>
@@ -150,7 +154,7 @@ function Contact() {
           </span>
           <span className="flex flex-row space-x-2">
             <a
-              className="cursor-pointer pointer-events-auto hover:underline active:font-semibold"
+              className="cursor-pointer pointer-events-auto md:hover:underline active:font-semibold"
               onClick={() => saveAs(resumePDF, 'williamresume')}
             >
               resume
@@ -162,7 +166,7 @@ function Contact() {
 
       {/* social handles */}
       <motion.div
-        className="absolute inset-0 w-screen h-screen"
+        className="grid grid-cols-1 gap-y-8 md:grid-rows-2 md:grid-cols-2 md:absolute justify-items-center items-center p-32 inset-0 w-full h-full"
         initial={{ scale: 0 }}
         animate={{ scale: [0, 1.05, 1], transition: { duration: 0.5 } }}
         exit={{
@@ -170,11 +174,9 @@ function Contact() {
           transition: { duration: 0.2, times: [0, 0.8, 1], ease: 'easeInOut' },
         }}
       >
-        <ul className="absolute w-full h-full">
-          {handles.map((handle) => (
-            <HandleItem key={handle.handleKey} {...handle} />
-          ))}
-        </ul>
+        {handles.map((handle) => (
+          <HandleItem key={handle.handleKey} {...handle} />
+        ))}
       </motion.div>
 
       {/* plane animation easter egg */}

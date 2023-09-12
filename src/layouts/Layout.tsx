@@ -20,7 +20,11 @@ function Layout() {
       {/* page content */}
       <div
         className={`absolute inset-0 w-full h-full z-10 overflow-hidden select-none pointer-events-none 
-  ${isHomePage ? 'bg-transparent' : 'bg-neutral md:bg-transparent'}`}
+  ${
+    isHomePage
+      ? 'bg-transparent'
+      : 'bg-neutral md:bg-transparent pointer-events-auto md:pointer-events-none overflow-y-scroll md:overflow-hidden'
+  }`}
       >
         <AnimatePresence mode="wait">
           <motion.main key={location.pathname}>{outlet}</motion.main>
@@ -38,16 +42,33 @@ function Layout() {
           }}
           exit={{ opacity: 0 }}
         >
+          {/* desktop home */}
           <NavLink
-            className="font-subtitle md:text-xl text-base-content font-semibold hover:text-base-100 hover:underline underline-offset-2"
+            className="hidden md:block font-subtitle md:text-xl text-base-content font-semibold hover:text-base-100 hover:underline underline-offset-2"
             to="/"
           >
             home
           </NavLink>
-          <span className="subtitle-text">{location.pathname}</span>
+          {/* mobile home */}
+          <NavLink
+            className={`md:hidden fa fa-solid fa-home text-2xl hover:text-base-100 active:text-base-100 mr-2 ${
+              isHomePage ? 'hidden' : 'block'
+            }`}
+            to="/"
+          />
+
+          <span className="md:block hidden subtitle-text">
+            {location.pathname}
+          </span>
         </motion.div>
       </AnimatePresence>
-      <h1 className="absolute text-center md:text-start mb-2 md:ml-2 font-subtitle text-xs md:text-sm inset-x-0 md:left-0 bottom-0 z-20">
+
+      {/* footer */}
+      <h1
+        className={`absolute md:block text-center md:text-start mb-2 md:ml-2 font-subtitle text-xs md:text-sm inset-x-0 md:left-0 bottom-0 z-20 ${
+          isHomePage ? 'block' : 'hidden'
+        }`}
+      >
         Copyright © 2023 William Huang.
       </h1>
     </>

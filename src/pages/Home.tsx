@@ -54,8 +54,10 @@ function Home() {
   const poof = new Audio(poofMP3)
 
   const toggleLanguage = () => {
-    poof.play()
-    setLanguageIndex((prevIndex) => (prevIndex + 1) % welcomeMessages.length)
+    if (window.innerWidth > 768) {
+      poof.play()
+      setLanguageIndex((prevIndex) => (prevIndex + 1) % welcomeMessages.length)
+    }
   }
   return (
     <div>
@@ -72,7 +74,7 @@ function Home() {
         {welcomeMessages[languageIndex].message.map((letter, index) => (
           <h1
             key={index}
-            className="transform transition-all hover:scale-125 hover:-translate-y-2"
+            className="transform transition-all md:hover:scale-125 md:hover:-translate-y-2"
             onClick={toggleLanguage}
           >
             {letter}

@@ -58,7 +58,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       icon: typescriptSVG,
       type: 'language',
       description: { experience: 'main choice of language', year: '4+ years' },
-      position: 'left-[15%] top-[20%]',
+      position: 'md:row-start-2 md:col-start-2 md:justify-self-center',
     },
     {
       skillKey: 'javascript',
@@ -70,7 +70,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'proficient through typescript and experienced in associated frameworks',
       },
-      position: 'left-[20%] top-[50%]',
+      position: 'md:row-start-3 md:col-start-3 md:justify-self-center',
     },
     {
       skillKey: 'html_css',
@@ -81,7 +81,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '4+ years',
         experience: 'used in all my web projects',
       },
-      position: 'left-[10%] top-[70%]',
+      position: 'md:row-start-4 md:col-start-1 md:justify-self-center',
     },
     {
       skillKey: 'java',
@@ -93,7 +93,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'language used in data structures course and object-orientated programming courses',
       },
-      position: 'right-[10%] top-[20%]',
+      position: 'md:row-start-5 md:col-start-4 md:justify-self-center',
     },
     {
       skillKey: 'c',
@@ -104,7 +104,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '1+ years',
         experience: 'introductory to functional programming course',
       },
-      position: 'right-[15%] top-[50%]',
+      position: 'md:row-start-2 md:col-start-6 md:justify-self-end',
     },
     {
       skillKey: 'python',
@@ -115,7 +115,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience: 'introductory language and used in course data assignments',
         year: '1+ years',
       },
-      position: 'right-[15%] top-[70%]',
+      position: 'md:row-start-2 md:col-start-8 md:justify-self-end',
     },
     {
       skillKey: 'sql',
@@ -126,7 +126,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '1+ years',
         experience: 'used in database coursework',
       },
-      position: 'left-[25%] top-[30%]',
+      position: 'md:row-start-3 md:col-start-9 md:justify-self-end',
     },
 
     {
@@ -138,7 +138,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '1+ years',
         experience: 'used in excel macros coursework',
       },
-      position: 'right-[25%] top-[40%]',
+      position: 'md:row-start-5 md:col-start-6 md:justify-self-end',
     },
   ],
 
@@ -152,7 +152,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience: 'experience ranges through all my js/ts projects',
         year: '4+ years',
       },
-      position: 'left-[30%] top-[40%]',
+      position: 'md:row-start-2 md:col-start-4 md:justify-self-center',
     },
     {
       skillKey: 'reactjs',
@@ -163,7 +163,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '4+ years',
         experience: 'used in all my web projects',
       },
-      position: 'right-[30%] top-[20%]',
+      position: 'md:row-start-3 md:col-start-1 md:justify-self-center',
     },
     {
       skillKey: 'tailwindcss',
@@ -174,7 +174,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '2+ years',
         experience: 'main choice of style customization',
       },
-      position: 'left-[25%] top-[80%]',
+      position: 'md:row-start-5 md:col-start-2 md:justify-self-center',
     },
     {
       skillKey: 'threejs',
@@ -185,7 +185,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '1+ years',
         experience: 'beginner experience from building this website',
       },
-      position: 'right-[5%] top-[40%]',
+      position: 'md:row-start-3 md:col-start-7 md:justify-self-end',
     },
     {
       skillKey: 'reduxjs',
@@ -196,7 +196,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         year: '4+ years',
         experience: 'used in every react project for state management',
       },
-      position: 'right-[25%] top-[80%]',
+      position: 'md:row-start-5 md:col-start-8 md:justify-self-end',
     },
   ],
 
@@ -211,7 +211,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'experienced with collaborative and independent project version control',
       },
-      position: 'left-[10%] top-[40%]',
+      position: 'md:row-start-4 md:col-start-3 md:justify-self-center',
     },
     {
       skillKey: 'blender',
@@ -223,7 +223,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
         experience:
           'experience from building various models for my game projects',
       },
-      position: 'right-[15%] top-[30%]',
+      position: 'md:row-start-4 md:col-start-7 md:justify-self-end',
     },
   ],
 }
@@ -232,10 +232,6 @@ function Skills() {
   const [selectedCategory, setSelectedCategory] = useState<
     CategoryKeys | 'all'
   >('all')
-
-  const [visibility, setVisibility] = useState(false)
-
-  const toggleVisibility = () => setVisibility(!visibility)
 
   const toggleCategory = (category: CategoryKeys | 'all') => {
     if (category === selectedCategory) {
@@ -247,21 +243,19 @@ function Skills() {
 
   function SkillItem(props: Skill) {
     return (
-      <li className={`float-text-sm w-[10%] ${props.position}`}>
-        <div className="flex flex-row space-x-2 transform transition-all hover:scale-125">
-          <img src={props.icon} className="w-8" />
+      <li className={`subtitle-text md:w-[20%] mb-5 ${props.position}`}>
+        <div className="flex flex-row space-x-2 transform transition-all md:hover:scale-125">
+          <img src={props.icon} className="w-4 md:w-full" />
           <h2>{props.name}</h2>
         </div>
-        <h3 className="ml-12 text-sm w-fit">{props.type}</h3>
-        <p className="ml-16 text-sm font-body animate-pop-out">
-          {visibility ? props.description.experience : props.description.year}
-        </p>
+        <h3 className="hidden md:block ml-12 text-sm w-fit">{props.type}</h3>
+        <p className="md:ml-16 text-sm font-body">{props.description.year}</p>
       </li>
     )
   }
 
   return (
-    <div>
+    <div className="p-4">
       {/* top menu */}
       <motion.div
         className="flex flex-col"
@@ -273,17 +267,19 @@ function Skills() {
         exit={{ translateY: -200, transition: { duration: 0.2 } }}
       >
         <h1
-          className="h1 mt-16 w-fit pointer-events-auto self-center hover:text-base-100 transform transition-all hover:scale-105 active:animate-pop-in-out"
+          className="h2 mt-16 w-fit pointer-events-auto md:self-center md:hover:text-base-100 transform transition-all md:hover:scale-105 md:active:animate-pop-in-out"
           onClick={() => {
-            const pop = new Audio(popMP3)
-            pop.play()
-            toggleCategory('all')
+            if (window.innerWidth > 768) {
+              const pop = new Audio(popMP3)
+              pop.play()
+              toggleCategory('all')
+            }
           }}
         >
           Skills
         </h1>
         {/* languages, frameworks, other */}
-        <span className="flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">
+        <span className="hidden md:flex flex-row mt-2 justify-center font-body space-x-2 decoration-2 underline-offset-2">
           {Object.keys(skillCategories).map((category) => (
             <h2
               key={category}
@@ -298,33 +294,56 @@ function Skills() {
             </h2>
           ))}
         </span>
-        {/* eye */}
-        <i
-          className="mt-2 fa-solid fa-eye w-fit text-xl self-center cursor-pointer hover:text-base-100 transform transition-transform hover:scale-125"
-          onClick={toggleVisibility}
-        />
       </motion.div>
-      {/* floating skill containers */}
-      <motion.div
-        className="absolute inset-0 w-screen h-screen"
-        exit={{ scale: 0, transition: { duration: 0.2 } }}
-      >
+      {/* desktop skill containers */}
+      <div className="hidden md:block">
         {Object.entries(skillCategories).map(([category, skills]) => (
           <ul
             key={category}
-            className={`absolute w-full h-full ${
+            className={`absolute inset-0 w-full h-full ${
               selectedCategory === category || selectedCategory === 'all'
                 ? 'animate-shoot-out'
                 : 'animate-shoot-in'
             }`}
           >
-            {/* skill content */}
-            {skills.map((skill) => (
-              <SkillItem key={skill.skillKey} {...skill} />
-            ))}
+            <motion.div
+              className="grid grid-rows-5 grid-cols-10 absolute p-32 inset-0 w-full h-full"
+              exit={{ scale: 0, transition: { duration: 0.2 } }}
+            >
+              {/* skill content */}
+              {skills.map((skill) => (
+                <SkillItem key={skill.skillKey} {...skill} />
+              ))}
+            </motion.div>
           </ul>
         ))}
-      </motion.div>
+      </div>
+      <div className="md:hidden mt-8">
+        {/* mobile skill containers */}
+        {Object.entries(skillCategories).map(([category, skills]) => (
+          <motion.div
+            key={category}
+            initial={{ translateX: -1000 }}
+            animate={{
+              translateX: [-1000, 20, 0],
+              transition: {
+                duration: 0.5,
+                times: [0, 0.8, 1],
+                ease: 'easeInOut',
+              },
+            }}
+            exit={{ translateX: 1000, transition: { duration: 0.2 } }}
+          >
+            <h2 className="body">{category}</h2>
+            <ul className="grid grid-cols-2 gap-4 p-8">
+              {/* <-- Added grid classes here */}
+              {skills.map((skill) => (
+                <SkillItem key={skill.skillKey} {...skill} />
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
     </div>
   )
 }
