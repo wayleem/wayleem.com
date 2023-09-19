@@ -8,7 +8,7 @@ import githubSVG from '../assets/icons/github.svg'
 import linkedinSVG from '../assets/icons/linkedin.svg'
 import twitterSVG from '../assets/icons/twitter.svg'
 import discordSVG from '../assets/icons/discord.svg'
-import resumePDF from '../assets/WILLIAM RESUME.pdf'
+import resumePDF from '../assets/wresume.pdf'
 import airplane from '../assets/icons/airplane.svg'
 import ufo from '../assets/icons/ufo.svg'
 
