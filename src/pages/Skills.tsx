@@ -14,7 +14,9 @@ import tailwindSVG from '../assets/icons/tailwindcss.svg'
 import threeSVG from '../assets/icons/three.svg'
 import blenderSVG from '../assets/icons/blender.svg'
 import sqlSVG from '../assets/icons/sql.svg'
-import vbSVG from '../assets/icons/visualbasic.svg'
+import expressjsSVG from '../assets/icons/expressjs.svg'
+import linuxSVG from '../assets/icons/linux.svg'
+import sveltejsSVG from '../assets/icons/sveltejs.svg'
 import popMP3 from '../assets/audio/pop.mp3'
 
 type SkillKeys = (typeof SKILL_KEYS)[number]
@@ -27,15 +29,18 @@ const SKILL_KEYS = [
   'c',
   'python',
   'html_css',
+  'sveltejs',
   'reactjs',
   'reduxjs',
+  'expressjs',
   'git',
-  'nodejs',
+  'node',
   'tailwindcss',
   'threejs',
   'blender',
-  'visual_basic',
+  'mongodb',
   'sql',
+  'linux',
 ]
 
 interface Skill {
@@ -43,10 +48,6 @@ interface Skill {
   name: string
   icon: string
   type: string
-  description: {
-    year: string
-    experience: string
-  }
   position: string
 }
 
@@ -57,7 +58,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'typescript',
       icon: typescriptSVG,
       type: 'language',
-      description: { experience: 'main choice of language', year: '4+ years' },
       position:
         'md:row-start-2 md:col-start-2 xl:justify-self-center md:justify-self-start',
     },
@@ -66,11 +66,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'javascript',
       icon: javascriptSVG,
       type: 'language',
-      description: {
-        year: '4+ years',
-        experience:
-          'proficient through typescript and experienced in associated frameworks',
-      },
       position:
         'md:row-start-3 md:col-start-3 xl:justify-self-center md:justify-self-start',
     },
@@ -79,10 +74,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'html+css',
       icon: htmlSVG,
       type: 'markup',
-      description: {
-        year: '4+ years',
-        experience: 'used in all my web projects',
-      },
       position:
         'md:row-start-4 md:col-start-1 xl:justify-self-center md:justify-self-start',
     },
@@ -91,11 +82,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'java',
       icon: javaSVG,
       type: 'language',
-      description: {
-        year: '5+ years',
-        experience:
-          'language used in data structures course and object-orientated programming courses',
-      },
       position:
         'md:row-start-5 md:col-start-4 xl:justify-self-center md:justify-self-start',
     },
@@ -104,10 +90,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'c',
       icon: cSVG,
       type: 'language',
-      description: {
-        year: '1+ years',
-        experience: 'introductory to functional programming course',
-      },
       position: 'md:row-start-2 md:col-start-6 md:justify-self-end',
     },
     {
@@ -115,10 +97,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'python',
       icon: pythonSVG,
       type: 'language',
-      description: {
-        experience: 'introductory language and used in course data assignments',
-        year: '1+ years',
-      },
       position: 'md:row-start-2 md:col-start-8 md:justify-self-end',
     },
     {
@@ -126,23 +104,7 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'SQL',
       icon: sqlSVG,
       type: 'language',
-      description: {
-        year: '1+ years',
-        experience: 'used in database coursework',
-      },
       position: 'md:row-start-3 md:col-start-9 md:justify-self-end',
-    },
-
-    {
-      skillKey: 'visual_basic',
-      name: 'Visual Basic',
-      icon: vbSVG,
-      type: 'language',
-      description: {
-        year: '1+ years',
-        experience: 'used in excel macros coursework',
-      },
-      position: 'md:row-start-5 md:col-start-6 md:justify-self-end',
     },
   ],
 
@@ -152,10 +114,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'nodejs',
       icon: nodeSVG,
       type: 'environment',
-      description: {
-        experience: 'experience ranges through all my js/ts projects',
-        year: '4+ years',
-      },
       position:
         'md:row-start-2 md:col-start-4 xl:justify-self-center md:justify-self-start',
     },
@@ -164,22 +122,22 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'reactjs',
       icon: reactSVG,
       type: 'framework',
-      description: {
-        year: '4+ years',
-        experience: 'used in all my web projects',
-      },
       position:
         'md:row-start-3 md:col-start-1 xl:justify-self-center md:justify-self-start',
+    },
+    {
+      skillKey: 'expressjs',
+      name: 'expressjs',
+      icon: expressjsSVG,
+      type: 'framework',
+      position:
+        'md:row-start-5 md:col-start-7 xl:justify-self-center md:justify-self-start',
     },
     {
       skillKey: 'tailwindcss',
       name: 'tailwindcss',
       icon: tailwindSVG,
       type: 'framework',
-      description: {
-        year: '2+ years',
-        experience: 'main choice of style customization',
-      },
       position:
         'md:row-start-5 md:col-start-2 xl:justify-self-center md:justify-self-start',
     },
@@ -188,10 +146,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'threejs',
       icon: threeSVG,
       type: 'framework',
-      description: {
-        year: '1+ years',
-        experience: 'beginner experience from building this website',
-      },
       position: 'md:row-start-3 md:col-start-7 md:justify-self-end',
     },
     {
@@ -199,11 +153,14 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'reduxjs',
       icon: reduxSVG,
       type: 'framework',
-      description: {
-        year: '4+ years',
-        experience: 'used in every react project for state management',
-      },
       position: 'md:row-start-5 md:col-start-8 md:justify-self-end',
+    },
+    {
+      skillKey: 'sveltejs',
+      name: 'sveltejs',
+      icon: sveltejsSVG,
+      type: 'framework',
+      position: 'md:row-start-4 md:col-start-8 md:justify-self-end',
     },
   ],
 
@@ -213,11 +170,6 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'git',
       icon: gitSVG,
       type: 'software',
-      description: {
-        year: '4+ years',
-        experience:
-          'experienced with collaborative and independent project version control',
-      },
       position:
         'md:row-start-4 md:col-start-3 xl:justify-self-center md:justify-self-start',
     },
@@ -226,12 +178,22 @@ const skillCategories: Record<CategoryKeys, Skill[]> = {
       name: 'blender',
       icon: blenderSVG,
       type: 'software',
-      description: {
-        year: '1+ years',
-        experience:
-          'experience from building various models for my game projects',
-      },
       position: 'md:row-start-4 md:col-start-7 md:justify-self-end',
+    },
+    {
+      skillKey: 'mongodb',
+      name: 'mongodb',
+      icon: 'https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/external-mongodb-a-cross-platform-document-oriented-database-program-logo-shadow-tal-revivo.png',
+      type: 'database',
+      position: 'md:row-start-1 md:col-start-2 md:justify-self-end',
+    },
+
+    {
+      skillKey: 'linux',
+      name: 'linux',
+      icon: 'https://img.icons8.com/color/48/linux--v1.png',
+      type: 'os',
+      position: 'md:row-start-1 md:col-start-7 md:justify-self-end',
     },
   ],
 }
@@ -253,11 +215,10 @@ function Skills() {
     return (
       <li className={`subtitle-text md:w-[20%] mb-5 ${props.position}`}>
         <div className="flex flex-row space-x-2 transform transition-all md:hover:scale-125">
-          <img src={props.icon} />
+          <img className="w-6 md:w-fit" src={props.icon} />
           <h2>{props.name}</h2>
         </div>
         <h3 className="hidden md:block ml-12 text-sm w-fit">{props.type}</h3>
-        <p className="md:ml-16 text-sm font-body">{props.description.year}</p>
       </li>
     )
   }
@@ -291,10 +252,11 @@ function Skills() {
           {Object.keys(skillCategories).map((category) => (
             <h2
               key={category}
-              className={`cursor-pointer pointer-events-auto hover:underline ${category === selectedCategory
-                ? 'font-semibold text-base-100'
-                : 'hover:text-base-100 text-base-content'
-                }`}
+              className={`cursor-pointer pointer-events-auto hover:underline ${
+                category === selectedCategory
+                  ? 'font-semibold text-base-100'
+                  : 'hover:text-base-100 text-base-content'
+              }`}
               onClick={() => toggleCategory(category as CategoryKeys)}
             >
               {category}
@@ -307,10 +269,11 @@ function Skills() {
         {Object.entries(skillCategories).map(([category, skills]) => (
           <ul
             key={category}
-            className={`absolute inset-0 w-full h-full ${selectedCategory === category || selectedCategory === 'all'
-              ? 'animate-shoot-out'
-              : 'animate-shoot-in'
-              }`}
+            className={`absolute inset-0 w-full h-full ${
+              selectedCategory === category || selectedCategory === 'all'
+                ? 'animate-shoot-out'
+                : 'animate-shoot-in'
+            }`}
           >
             <motion.div
               className="grid grid-rows-5 grid-cols-10 absolute p-32 inset-0 w-full h-full"
