@@ -253,7 +253,7 @@ function Skills() {
     return (
       <li className={`subtitle-text md:w-[20%] mb-5 ${props.position}`}>
         <div className="flex flex-row space-x-2 transform transition-all md:hover:scale-125">
-          <img src={props.icon} className="w-4 md:w-full" />
+          <img src={props.icon} />
           <h2>{props.name}</h2>
         </div>
         <h3 className="hidden md:block ml-12 text-sm w-fit">{props.type}</h3>
@@ -291,11 +291,10 @@ function Skills() {
           {Object.keys(skillCategories).map((category) => (
             <h2
               key={category}
-              className={`cursor-pointer pointer-events-auto hover:underline ${
-                category === selectedCategory
-                  ? 'font-semibold text-base-100'
-                  : 'hover:text-base-100 text-base-content'
-              }`}
+              className={`cursor-pointer pointer-events-auto hover:underline ${category === selectedCategory
+                ? 'font-semibold text-base-100'
+                : 'hover:text-base-100 text-base-content'
+                }`}
               onClick={() => toggleCategory(category as CategoryKeys)}
             >
               {category}
@@ -308,11 +307,10 @@ function Skills() {
         {Object.entries(skillCategories).map(([category, skills]) => (
           <ul
             key={category}
-            className={`absolute inset-0 w-full h-full ${
-              selectedCategory === category || selectedCategory === 'all'
-                ? 'animate-shoot-out'
-                : 'animate-shoot-in'
-            }`}
+            className={`absolute inset-0 w-full h-full ${selectedCategory === category || selectedCategory === 'all'
+              ? 'animate-shoot-out'
+              : 'animate-shoot-in'
+              }`}
           >
             <motion.div
               className="grid grid-rows-5 grid-cols-10 absolute p-32 inset-0 w-full h-full"
