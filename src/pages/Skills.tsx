@@ -15,7 +15,6 @@ import threeSVG from '../assets/icons/three.svg'
 import blenderSVG from '../assets/icons/blender.svg'
 import sqlSVG from '../assets/icons/sql.svg'
 import expressjsSVG from '../assets/icons/expressjs.svg'
-import linuxSVG from '../assets/icons/linux.svg'
 import sveltejsSVG from '../assets/icons/sveltejs.svg'
 import popMP3 from '../assets/audio/pop.mp3'
 
