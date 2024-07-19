@@ -1,25 +1,26 @@
-import { Routes, Route, HashRouter } from 'react-router-dom'
-import Layout from './layouts/Layout'
-import Home from './pages/Home'
-import Skills from './pages/Skills'
-import Contact from './pages/Contact'
-import About from './pages/About'
-import Experience from './pages/Experience'
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import ChatArea from './components/ChatArea';
+import ChatInput from './components/ChatInput';
+import { webSocketService } from './services/websocket';
 
-function App() {
+const App: React.FC = () => {
+  useEffect(() => {
+    webSocketService.connect('ws://127.0.0.1:8080/ws');
+  }, []);
+
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="*" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="experience" element={<Experience />} />
-          <Route path="skills" element={<Skills />} />
-          <Route path="contact" element={<Contact />} />
-        </Route>
-      </Routes>
-    </HashRouter>
-  )
-}
+    <Provider store={store}>
+      <div className="flex flex-col h-screen">
+        <header className="bg-blue-500 text-white p-4">
+          <h1 className="text-2xl font-bold">Portfolio Chatbot</h1>
+        </header>
+        <ChatArea />
+        <ChatInput />
+      </div>
+    </Provider>
+  );
+};
 
-export default App
+export default App;
