@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
-import { webSocketService } from '../services/websocket';
+import React, { useState } from 'react'
+import { httpService } from '../services/httpService'
 
 const ChatInput: React.FC = () => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (message.trim()) {
-      webSocketService.sendMessage(message);
-      setMessage('');
+      httpService.sendMessage(message)
+      setMessage('')
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border-t">
-      <div className="flex">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          className="flex-1 p-2 border rounded-l-lg"
-          placeholder="Type a message..."
-        />
-        <button type="submit" className="p-2 bg-blue-500 text-white rounded-r-lg">
-          Send
-        </button>
-      </div>
+    <form onSubmit={handleSubmit} className="p-4">
+      <input
+        type="text"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        className="w-full p-2 border rounded"
+        placeholder="Type your message..."
+      />
+      <button
+        type="submit"
+        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Send
+      </button>
     </form>
-  );
-};
+  )
+}
 
-export default ChatInput;
+export default ChatInput
