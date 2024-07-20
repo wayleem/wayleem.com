@@ -2,7 +2,6 @@ use actix_cors::Cors;
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
 use std::env;
-
 mod api;
 mod model;
 
@@ -11,10 +10,11 @@ async fn main() -> std::io::Result<()> {
     dotenv().ok();
     env_logger::init();
 
-    let model = web::Data::new(api::get_language_model());
-    let server_address =
-        env::var("SERVER_ADDRESS").unwrap_or_else(|_| "127.0.0.1:8080".to_string());
+    let model = web::Data::new(api::AppState {
+        model: std::sync::Arc::new(tokio::sync::Mutex::new(api::get_language_model())),
+    });
 
+    let server_address = env::var("SERVER_ADDRESS").unwrap_or_else(|_| "127.0.0.1:8080".to_string());
     println!("Starting server at {}", server_address);
 
     HttpServer::new(move || {
