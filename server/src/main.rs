@@ -1,39 +1,85 @@
-use actix_cors::Cors;
-use actix_web::{web, App, HttpServer};
+use axum::{
+    routing::post,
+    Router,
+    Json,
+    extract::State,
+};
+use tower_http::cors::{Any, CorsLayer};
+use serde::{Deserialize, Serialize};
+use std::sync::Arc;
+use tokio::sync::Mutex;
 use dotenv::dotenv;
 use std::env;
-mod api;
+use std::net::SocketAddr;
+use llm::models::Llama;
+use tracing::info;
+
 mod model;
+mod conversation;
 
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
+use conversation::Conversation;
+
+#[derive(Clone)]
+struct AppState {
+    model: Arc<Mutex<Llama>>,
+    conversation: Arc<Mutex<Conversation>>,
+}
+
+#[derive(Deserialize)]
+struct ChatRequest {
+    message: String,
+}
+
+#[derive(Serialize)]
+struct ChatResponse {
+    response: String,
+}
+
+async fn chat(
+    State(state): State<AppState>,
+    Json(request): Json<ChatRequest>,
+) -> Json<ChatResponse> {
+    let model = state.model.lock().await;
+    let mut conversation = state.conversation.lock().await;
+    
+    conversation.add_message(true, request.message.clone());
+    
+    let context = conversation.get_context();
+    let mut session = model::session_setup(&model);
+    
+    let formatted_context = format!("Human: {}", request.message);
+    let response = model::infer(&model, &mut session, &formatted_context).await
+        .unwrap_or_else(|_| "Sorry, I couldn't generate a response.".to_string());
+
+    conversation.add_message(false, response.clone());
+
+    Json(ChatResponse { response })
+}
+
+#[tokio::main]
+async fn main() {
     dotenv().ok();
-    env_logger::init();
+    tracing_subscriber::fmt::init();
 
-    let model = web::Data::new(api::AppState {
-        model: std::sync::Arc::new(tokio::sync::Mutex::new(api::get_language_model())),
-    });
+    let model = Arc::new(Mutex::new(model::get_language_model()));
+    let conversation = Arc::new(Mutex::new(Conversation::new()));
+    let app_state = AppState { model, conversation };
 
-    let server_address = env::var("SERVER_ADDRESS").unwrap_or_else(|_| "127.0.0.1:8080".to_string());
-    println!("Starting server at {}", server_address);
+    let cors = CorsLayer::new()
+        .allow_origin(Any)
+        .allow_methods(Any)
+        .allow_headers(Any);
 
-    HttpServer::new(move || {
-        let cors = Cors::default()
-            .allow_any_origin()
-            .allowed_methods(vec!["GET", "POST"])
-            .allowed_headers(vec![
-                actix_web::http::header::AUTHORIZATION,
-                actix_web::http::header::ACCEPT,
-            ])
-            .allowed_header(actix_web::http::header::CONTENT_TYPE)
-            .max_age(3600);
+    let app = Router::new()
+        .route("/chat", post(chat))
+        .layer(cors)
+        .with_state(app_state);
 
-        App::new()
-            .wrap(cors)
-            .app_data(model.clone())
-            .route("/ws", web::get().to(api::ws))
-    })
-    .bind(&server_address)?
-    .run()
-    .await
+    let addr = env::var("SERVER_ADDRESS").unwrap_or_else(|_| "127.0.0.1:8080".to_string());
+    let socket_addr: SocketAddr = addr.parse().expect("Invalid address");
+    println!("Server running on {}", socket_addr);
+
+    // Use tokio to run the server
+    let listener = tokio::net::TcpListener::bind(&socket_addr).await.unwrap();
+    axum::serve(listener, app).await.unwrap();
 }
