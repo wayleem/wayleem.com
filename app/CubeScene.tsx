@@ -1,5 +1,3 @@
-"use client";
-
 import { Canvas, ThreeEvent, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import {
@@ -11,6 +9,10 @@ import {
 	Texture,
 	ClampToEdgeWrapping,
 	NearestFilter,
+	LineBasicMaterial,
+	Object3D,
+	EdgesGeometry,
+	LineSegments,
 } from "three";
 import homePNG from "./assets/navIcons/home.png";
 import aboutPNG from "./assets/navIcons/about.png";
@@ -74,6 +76,39 @@ function CubeScene() {
 		}),
 		{} as Record<string, MeshStandardMaterial>,
 	);
+
+	function CubeOutline({ size = 1, color = "#000000" }) {
+		const outline = new Object3D();
+		const edgesGeometry = new EdgesGeometry(new PlaneGeometry(size, size));
+		const lineMaterial = new LineBasicMaterial({ color, linewidth: 2 });
+
+		const positions: [number, number, number][] = [
+			[0, 0, size / 2],
+			[0, 0, -size / 2],
+			[size / 2, 0, 0],
+			[-size / 2, 0, 0],
+			[0, size / 2, 0],
+			[0, -size / 2, 0],
+		];
+
+		const rotations: [number, number, number][] = [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, Math.PI / 2, 0],
+			[0, Math.PI / 2, 0],
+			[Math.PI / 2, 0, 0],
+			[Math.PI / 2, 0, 0],
+		];
+
+		positions.forEach((position, index) => {
+			const line = new LineSegments(edgesGeometry, lineMaterial);
+			line.position.set(position[0], position[1], position[2]);
+			line.rotation.set(rotations[index][0], rotations[index][1], rotations[index][2]);
+			outline.add(line);
+		});
+
+		return <primitive object={outline} />;
+	}
 
 	// navigation ------------------------------------------
 	function _onClick(e: ThreeEvent<MouseEvent>) {
@@ -148,6 +183,7 @@ function CubeScene() {
 					onPointerLeave={(e) => _onPointerLeave(e, e.object as Mesh)}
 				/>
 			))}
+			<CubeOutline size={1} color="#000000" />
 			<OrbitControls enablePan={false} enableZoom={false} />
 		</Canvas>
 	);
