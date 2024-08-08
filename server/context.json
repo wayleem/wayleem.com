@@ -1,0 +1,202 @@
+{
+  "personal_information": {
+    "name": "William Huang",
+    "location": "New York City, NY",
+    "contact": "wayleemh@gmail.com | +1 (347) 727-3646",
+    "website": "wayleem.com",
+    "linkedin": "linkedin.com/in/will-huang2",
+    "github": "github.com/wayleem"
+  },
+  "summary": {
+    "experience": "5+ years of programming experience",
+    "motivation": "Motivated to learn new skills and technologies",
+    "passion": "Passion for web development with 3+ years experience in full stack development"
+  },
+  "education": {
+    "degree": "B.S. Technical Systems Management",
+    "minors": ["Information Systems", "Applied Mathematics & Statistics"],
+    "institution": "Stony Brook University",
+    "years": "2021 - 2024",
+    "honors": "Dean's List",
+    "gpa": "3.3",
+    "course_work": {
+      "Computer Networking": "This course introduces the principles of computer networks, including network architectures, algorithms, and performance, with the TCP/IP based Internet as an example. It examines various networking protocols at different layers of the Internet protocol stack, including those at the application, transport, network, and the data link layers, respectively.",
+      "Network Administration": "The course introduces students to the fundamentals of network management, primarily for TCP/IP networks. Students are introduced to networking protocols, hardware, architecture, media, and software and experience hands-on management of typical network components. Various network protocols are examined, including Internet routing protocols. Network security is introduced in the overall context of network management.",
+      "Cloud Computing": "This course focuses on skills across various aspects of cloud computing. It covers conceptual topics and hands-on experience through real-world use cases by using public cloud infrastructure (AWS). Students will gain practical/real-world experience to improve their competitiveness in digital transformation projects",
+      "Data Structures": "The course covers data structures to efficiently store, organize, modify, and access data. Topics include: arrays, linked lists, stacks, queues, trees, hash tables, priority queues, and graphs. Recursive programming is heavily utilized. Fundamental sorting and searching algorithms are examined along with informal efficiency comparisons. Javai s used to implement topics.",
+      "Object-Oriented Programming": "An introduction to procedural and object-oriented programming methodology. Topics include program structure, conditional and iterative programming, procedures, arrays and records, object classes, encapsulation, information hiding, inheritance, polymorphism, file I/O, and exceptions. Java is used to implement topics.",
+      "Game Design": "Fundamental ideas underlying the design of games, which occurs before the programming stage. How games function to create experiences, including rule design, play mechanics, game balancing, social game interaction and the integration of visual, audio, tactile and textual elements into the total game experience. Game design documentation and play testing. Students will design their own game during the semester.",
+      "Database Design & Practice": "This course deals with the practical use of database technology in business systems. It covers the design of database applications including Entity- Relationship data modeling, the relational data model, the SQL database query language, application development, and database administration.",
+      "Human-Computer Interaction": "A survey course designed to introduce students to Human-Computer Interaction and prepare them for further study in the specialized topics of their choice. Students will have the opportunity to delve deeper in the course through a course project, and through a two-three week special topic selected at the instructor's discretion. Course is cross-listed as CSE 323, EST 323 and ISE 323.",
+      "Linear Algebra": "An introduction to the theory and use of vectors and matrices. Matrix theory including systems of linear equations. Theory of Euclidean and abstract vector spaces. Eigenvalues and eigenvectors. Linear tranformations. ",
+      "Discrete Mathematics": "Introduction to the logical and mathematical foundations of computer science. Topics include functions, relations, and sets; recursion and functional programming; elementary logic; and mathematical induction and other proof techniques.",
+      "Probability & Statistics": "A survey of data analysis, probability theory, and statistics. Stem and leaf displays, box plots, schematic plots, fitting straight line relationships, discrete and continuous probability distributions, conditional distributions, binomial distribution, normal and t distributions, confidence intervals, and significance tests.",
+      "Graph Theory": "Paths and circuits, trees and tree based algorithms, graph coloring, digraphs, network flows, matching theory, matroids, and games with graphs.",
+      "Data Analysis": "A continuation of AMS 310 that covers two sample t-tests, contingency table methods, the one-way analysis of variance, and regression analysis with one and multiple independent variables. Student projects analyze data provided by the instructor and require the use of a statistical computing package such as SAS or SPSS. R is used to conduct statistical analysis.",
+      "Numerical Analysis": "Direct and indirect methods for the solution of linear and nonlinear equations. Computation of eigenvalues and eigenvectors of matrices. Quadrature, differentiation, and curve fitting. Numerical solution of ordinary and partial differential equations. Python is used to implement methods.",
+      "Applied Algebra": "Topics in algebra: groups, informal set theory, relations, homomorphisms. Applications: error correcting codes, Burnside's theorem, computational complexity, Chinese remainder theorem.",
+      "Calculus III": "Vector algebra and analytic geometry in 2- and 3-dimensions: multivariable differential calculus and tangent planes; multivariable integral calculus; optimization and Lagrange multipliers; vector calculus including Green's and Stoke's theorems.",
+      "Project Management": "This course addresses fundamental project management concepts and skills needed to successfully initiate, lead, monitor, control and realize projects execution. In this course, students explore project management with a practical approach through case studies and group projects. GANTT chart, Agile methods are utilized. ",
+      "Benevolent Computing": "The purpose of this course is to explore the recent phenomenon of software applications that leverage social networks and mobile computing to solve local and global problems. The course will use case studies and journal papers to document the process of developing civically-oriented applications. Students will work in teams to identify campus causes (or off-campus non-profit organizations), and to design and develop a term project (mobile or web-based application) that will help those organizations achieve their goals."
+    }
+  },
+  "skills": {
+    "languages": [
+      "TypeScript",
+      "JavaScript",
+      "Java",
+      "Python",
+      "Rust",
+      "C",
+      "SQL",
+      "R"
+    ],
+    "frameworks": [
+      "Svelte",
+      "React",
+      "Express.js",
+      "Three.js",
+      "Node",
+      "Flask",
+      "Pandas",
+      "Tensorflow",
+      "Pytorch",
+      "Redux.js",
+      "Node",
+      "Bun",
+      "Tailwindcss",
+      "Framer Motion"
+    ],
+    "cloud_computing": "AWS",
+    "systems": ["Linux", "Windows systems"],
+    "technologies": ["Blender", "Git", "Neovim", "MongoDB", "Cloudflare Tunnel"]
+  },
+  "work_experience": {
+    "software_engineer_summer_internship": {
+      "company": "ClinChoice Inc.",
+      "duration": "Summer 2023",
+      "responsibilities": [
+        "Developed best practice guidelines for future ClinChoice web applications",
+        "Created a demo data server embodying ClinChoice standards",
+        "Prototyped various technologies to optimize web development for product delivery",
+        "Optimized and converted legacy code, reducing build times by 50%",
+        "Populated dummy data for visualization with ApexCharts for prototype display",
+        "Delivered demo prototypes built with TypeScript, React, Node",
+        "Utilized modern web development stack including React, Redux, and UI libraries like Radix UI and MUI",
+        "Implemented internationalization with Lingui"
+      ]
+    }
+  },
+  "projects": {
+    "360_virtual_tour_application": {
+      "github": "github.com/wayleem/virtual-tour",
+      "description": "Led a team of 5 developers to deliver a virtual tour application for Group For the East End",
+      "technologies": ["TypeScript", "React", "Redux", "Node"],
+      "highlights": [
+        "Integrated Pannellum for panoramic viewing",
+        "Employed responsive design for accessibility from over 10+ devices and platforms",
+        "Used Framer Motion to enhance user experience, increasing user engagement by 30%",
+        "Managed software development lifecycle using Agile, reducing development cycle time by 15%"
+      ]
+    },
+    "professor_chatbot": {
+      "github": "github.com/wayleem/professor-chatbot",
+      "description": "Entry for HopperHacks 2024 at Stony Brook University",
+      "technologies": [
+        "TypeScript",
+        "Svelte",
+        "Python",
+        "TensorFlow",
+        "NLTK",
+        "Flask"
+      ],
+      "highlights": [
+        "Deployed an intelligent chatbot utilizing natural language training",
+        "Implemented TensorFlow, achieving 85% accuracy in classification and response generation",
+        "Utilized Natural Language Toolkit (NLTK) for text processing, resulting in 25% improvement in speed",
+        "Engineered RESTful API with Flask to handle HTTP requests",
+        "Designed and managed intents and training datasets, enhancing chatbot's response accuracy by 20%"
+      ]
+    },
+    "discord_docker_bot": {
+      "github": "github.com/wayleem/discord-docker-bot",
+      "description": "Deployed a bot for seamless management of Docker services through Discord's application",
+      "technologies": ["TypeScript", "Node", "Discord API"],
+      "highlights": [
+        "Integrated Discord and Docker API",
+        "Engineered a scaling bot architecture for handling an appendable list of management commands",
+        "Developed monitoring systems, reducing critical status response time by 50%"
+      ]
+    },
+    "mern_ecommerce_site": {
+      "description": "Developed a full-stack e-commerce site using the MERN stack",
+      "highlights": [
+        "Implemented user authentication using JWT and bcrypt for password hashing",
+        "Utilized MongoDB for database management",
+        "Deployed the application on AWS, demonstrating cloud computing skills"
+      ]
+    },
+    "stock_trading_bots": {
+      "description": "Developed various stock trading bots implementing various algorithms. Algorithms include RNN, HMM, Pairs trading, and MACD.",
+      "technologies": [
+        "Python",
+        "numpy",
+        "pandas",
+        "yfinance",
+        "scikit-learn",
+        "tensorflow",
+        "keras-tuner",
+        "ta",
+        "matplotlib"
+      ]
+    },
+    "roblox_game_development": {
+      "projects": [
+        {
+          "name": "Catan roblox game",
+          "technologies": [
+            "Roblox Studio",
+            "roact-rodux",
+            "TypeScript",
+            "Roblox-TS"
+          ]
+        },
+        {
+          "name": "Hide and Seek roblox game",
+          "description": "Features a unique mechanic where the seeker uses a glaring spotlight to find hiders. Developed for game design class.",
+          "technologies": [
+            "Roblox Studio",
+            "roact-rodux",
+            "TypeScript",
+            "Roblox-TS"
+          ]
+        }
+      ]
+    },
+    "mobile_app": {
+      "description": "Features camera function to capture rendered ghosts in your environment. The app attempts to emulate ghost hunting with a crude EMF reader on the UI. Developed for game design class",
+      "technologies": ["TypeScript", "Expo", "React", "React Native", "Redux"]
+    }
+  },
+  "network_administration_experience": {
+    "highlights": [
+      "Architected and managed a robust server lab network, achieving a 30% increase in speed and reliability",
+      "Deployed advanced software on the router, including an ad block, causing 90% reduction of unwanted traffic",
+      "Executed network administration tasks such as masquerading, packet sniffing, and firewall configurations",
+      "Administered 8+ remote clusters with RDP by implementing subnets and static mapping",
+      "Monitored and maintained network performance, proactively addressing potential issues"
+    ]
+  },
+  "extracurricular_activities": [
+    "Esports Execute Board: Participated in and helped manage the university's esports activities",
+    "Vietnamese Student Association General Body: Engaged in cultural and community activities"
+  ],
+  "misc_information": {
+    "preferred_development_environment": {
+      "languages": ["TypeScript", "JavaScript"],
+      "frameworks": ["React", "Redux"],
+      "development_focus": "Full-stack applications",
+      "text_editor": "Neovim"
+    }
+  }
+}

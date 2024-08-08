@@ -1,18 +1,18 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { store } from './store'
-import ChatArea from './components/ChatArea'
-import ChatInput from './components/ChatInput'
+import ChatBot from './components/Chatbot'
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <div className="flex flex-col h-screen">
-        <header className="bg-blue-500 text-white p-4">
-          <h1 className="text-2xl font-bold">Portfolio Chatbot</h1>
+      <div className="App">
+        <header className="App-header">
+          <h1>William Huang's Portfolio Chatbot</h1>
         </header>
-        <ChatArea />
-        <ChatInput />
+        <main>
+          <ChatBot />
+        </main>
       </div>
     </Provider>
   )
