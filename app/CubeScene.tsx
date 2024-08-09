@@ -16,6 +16,7 @@ import {
 	EdgesGeometry,
 	LineSegments,
 	Color,
+	PerspectiveCamera,
 } from "three";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -25,6 +26,19 @@ import skillsPNG from "./assets/navIcons/skills.png";
 import experiencesPNG from "./assets/navIcons/experiences.png";
 import blogPNG from "./assets/navIcons/blog.png";
 import contactPNG from "./assets/navIcons/contact.png";
+
+function CameraAdjuster() {
+	const { camera, size } = useThree();
+
+	useEffect(() => {
+		if (camera instanceof PerspectiveCamera) {
+			camera.aspect = size.width / size.height;
+			camera.updateProjectionMatrix();
+		}
+	}, [camera, size]);
+
+	return null;
+}
 
 function CubeScene() {
 	const router = useRouter();
@@ -229,10 +243,12 @@ function CubeScene() {
 	return (
 		<Canvas
 			camera={{
-				aspect: window.innerWidth / window.innerHeight,
 				position: [3, 3, 3],
+				fov: 75,
 			}}
+			dpr={window.devicePixelRatio}
 		>
+			<CameraAdjuster />
 			<SceneContent bgColor={bgColor} />
 			<ambientLight intensity={2} />
 			<directionalLight position={[2, 3, 1]} target-position={[0, 0, 0.5]} intensity={2} />

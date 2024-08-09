@@ -6,7 +6,7 @@ const CubeScene = dynamic(() => import("./CubeScene"), { ssr: false });
 
 export default function CubeSceneWrapper() {
 	return (
-		<div className="absolute inset-0 w-full z-10">
+		<div className="w-full h-full">
 			<CubeScene />
 		</div>
 	);

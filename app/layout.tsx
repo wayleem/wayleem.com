@@ -17,11 +17,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
-				<CubeSceneWrapper />
-				<main className="absolute inset-0 w-full h-full z-10 overflow-hidden select-none pointer-events-none">
-					{children}
-				</main>
+			<body className={`${inter.className} w-screen h-screen overflow-hidden`}>
+				<div className="relative w-full h-full">
+					<CubeSceneWrapper />
+					<main className="absolute inset-0 w-full h-full z-10 pointer-events-none">{children}</main>
+				</div>
 			</body>
 		</html>
 	);
