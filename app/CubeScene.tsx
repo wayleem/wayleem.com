@@ -1,4 +1,6 @@
-import { Canvas, ThreeEvent, useLoader } from "@react-three/fiber";
+"use client";
+
+import { Canvas, ThreeEvent, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import {
 	PlaneGeometry,
@@ -13,7 +15,10 @@ import {
 	Object3D,
 	EdgesGeometry,
 	LineSegments,
+	Color,
 } from "three";
+import { useRouter, usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import homePNG from "./assets/navIcons/home.png";
 import aboutPNG from "./assets/navIcons/about.png";
 import skillsPNG from "./assets/navIcons/skills.png";
@@ -22,6 +27,9 @@ import blogPNG from "./assets/navIcons/blog.png";
 import contactPNG from "./assets/navIcons/contact.png";
 
 function CubeScene() {
+	const router = useRouter();
+	const currentPath = usePathname();
+	const [bgColor, setBgColor] = useState(new Color("#ffffff")); // Default color
 	const plane = new PlaneGeometry(1, 1);
 
 	// Texture handling
@@ -60,31 +68,37 @@ function CubeScene() {
 		{} as Record<string, Texture>,
 	);
 
-	// Updated color definitions
+	// color definitions
 	const colors = {
 		home: {
 			default: "#07ed86",
 			highlight: "#57fdb5",
+			background: "#a4fcd6",
 		},
 		blog: {
 			default: "#cc00ff",
 			highlight: "#da47ff",
+			background: "#e580ff",
 		},
 		contact: {
 			default: "#ff0080",
 			highlight: "#ff4da3",
+			background: "#ff85c0",
 		},
 		experiences: {
 			default: "#00ffff",
 			highlight: "#66ffff",
+			background: "#aefcfc",
 		},
 		about: {
 			default: "#4040ff",
 			highlight: "#7474ff",
+			background: "#a9a9fc",
 		},
 		skills: {
 			default: "#6099fc",
 			highlight: "#86b3ff",
+			background: "#b1cdfc",
 		},
 	};
 
@@ -146,16 +160,22 @@ function CubeScene() {
 
 		switch (e.object.name) {
 			case "home":
+				router.push("/");
 				break;
 			case "about":
+				router.push("/about");
 				break;
 			case "skills":
+				router.push("/skills");
 				break;
 			case "experiences":
+				router.push("/experiences");
 				break;
 			case "blog":
+				router.push("/blog");
 				break;
 			case "contact":
+				router.push("/contact");
 				break;
 		}
 	}
@@ -188,17 +208,34 @@ function CubeScene() {
 		{ name: "skills", position: [0, -0.5, 0], rotation: [Math.PI / 2, 0, 0] },
 	];
 
+	const pathToColorKey: Record<string, keyof typeof colors> = {
+		"/": "home",
+		"/about": "about",
+		"/skills": "skills",
+		"/experiences": "experiences",
+		"/blog": "blog",
+		"/contact": "contact",
+	};
+
+	const getCurrentBackgroundColor = () => {
+		const colorKey = pathToColorKey[currentPath] || "home";
+		return colors[colorKey].background;
+	};
+
+	useEffect(() => {
+		setBgColor(new Color(getCurrentBackgroundColor()));
+	}, [currentPath]);
+
 	return (
 		<Canvas
-			className="bg-white"
 			camera={{
 				aspect: window.innerWidth / window.innerHeight,
 				position: [3, 3, 3],
 			}}
 		>
+			<SceneContent bgColor={bgColor} />
 			<ambientLight intensity={2} />
 			<directionalLight position={[2, 3, 1]} target-position={[0, 0, 0.5]} intensity={2} />
-			{/* makes up a cube */}
 			{meshes.map((mesh) => (
 				<mesh
 					key={mesh.name}
@@ -213,9 +250,19 @@ function CubeScene() {
 				/>
 			))}
 			<CubeOutline size={1} color="#000000" />
-			<OrbitControls enablePan={false} enableZoom={false} />
+			<OrbitControls enablePan={true} enableZoom={false} />
 		</Canvas>
 	);
+}
+
+function SceneContent({ bgColor }: { bgColor: Color }) {
+	const { gl } = useThree();
+
+	useEffect(() => {
+		gl.setClearColor(bgColor);
+	}, [gl, bgColor]);
+
+	return null;
 }
 
 export default CubeScene;
