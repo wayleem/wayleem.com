@@ -23,8 +23,8 @@ import contactPNG from "./assets/navIcons/contact.png";
 
 function CubeScene() {
 	const plane = new PlaneGeometry(1, 1);
-	// materials --------------------------------------------
 
+	// Texture handling
 	const textureInfo = {
 		home: homePNG.src,
 		about: aboutPNG.src,
@@ -59,6 +59,35 @@ function CubeScene() {
 		},
 		{} as Record<string, Texture>,
 	);
+
+	// Updated color definitions
+	const colors = {
+		home: {
+			default: "#07ed86",
+			highlight: "#57fdb5",
+		},
+		blog: {
+			default: "#cc00ff",
+			highlight: "#da47ff",
+		},
+		contact: {
+			default: "#ff0080",
+			highlight: "#ff4da3",
+		},
+		experiences: {
+			default: "#00ffff",
+			highlight: "#66ffff",
+		},
+		about: {
+			default: "#4040ff",
+			highlight: "#7474ff",
+		},
+		skills: {
+			default: "#6099fc",
+			highlight: "#86b3ff",
+		},
+	};
+
 	const createMaterial = (color: string, map: Texture) => {
 		return new MeshStandardMaterial({
 			color,
@@ -68,11 +97,12 @@ function CubeScene() {
 		});
 	};
 
-	const materials = Object.entries(textures).reduce(
-		(acc, [key, texture]) => ({
+	// Modified material creation
+	const materials = Object.entries(colors).reduce(
+		(acc, [key, colorSet]) => ({
 			...acc,
-			[`highlight_${key}`]: createMaterial("#e3b19f", texture),
-			[`default_${key}`]: createMaterial("#f5d4c9", texture),
+			[`default_${key}`]: createMaterial(colorSet.default, textures[key as keyof typeof textures]),
+			[`highlight_${key}`]: createMaterial(colorSet.highlight, textures[key as keyof typeof textures]),
 		}),
 		{} as Record<string, MeshStandardMaterial>,
 	);
@@ -110,11 +140,10 @@ function CubeScene() {
 		return <primitive object={outline} />;
 	}
 
-	// navigation ------------------------------------------
+	// Navigation
 	function _onClick(e: ThreeEvent<MouseEvent>) {
 		e.stopPropagation();
 
-		// top and bottom are dark mode togglers, the rest are pages
 		switch (e.object.name) {
 			case "home":
 				break;
@@ -131,7 +160,7 @@ function CubeScene() {
 		}
 	}
 
-	// pointer hover handling ------------------------------------------------
+	// Pointer hover handling
 	function _onPointerEnter(e: ThreeEvent<MouseEvent>, mesh: Mesh) {
 		e.stopPropagation();
 		document.documentElement.style.cursor = "pointer";
@@ -144,7 +173,7 @@ function CubeScene() {
 		mesh.material = materials[`default_${mesh.name}`];
 	}
 
-	// data -------------------------------------------------------------------
+	// Mesh data
 	type MeshData = {
 		name: string;
 		position: [number, number, number];
@@ -161,7 +190,7 @@ function CubeScene() {
 
 	return (
 		<Canvas
-			className="bg-neutral"
+			className="bg-white"
 			camera={{
 				aspect: window.innerWidth / window.innerHeight,
 				position: [3, 3, 3],
