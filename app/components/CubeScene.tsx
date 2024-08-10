@@ -1,6 +1,6 @@
 "use client";
 
-import { Canvas, ThreeEvent, useLoader, useThree } from "@react-three/fiber";
+import { Camera, Canvas, ThreeEvent, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import {
 	PlaneGeometry,
@@ -11,39 +11,26 @@ import {
 	Texture,
 	ClampToEdgeWrapping,
 	NearestFilter,
-	LineBasicMaterial,
 	Object3D,
-	EdgesGeometry,
-	LineSegments,
 	Color,
 	PerspectiveCamera,
 } from "three";
+import { Line2 } from "three/examples/jsm/lines/Line2.js";
+import { LineMaterial } from "three/examples/jsm/lines/LineMaterial.js";
+import { LineGeometry } from "three/examples/jsm/lines/LineGeometry.js";
 import { useRouter, usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import homePNG from "./assets/navIcons/home.png";
-import aboutPNG from "./assets/navIcons/about.png";
-import skillsPNG from "./assets/navIcons/skills.png";
-import experiencesPNG from "./assets/navIcons/experiences.png";
-import blogPNG from "./assets/navIcons/blog.png";
-import contactPNG from "./assets/navIcons/contact.png";
-
-function CameraAdjuster() {
-	const { camera, size } = useThree();
-
-	useEffect(() => {
-		if (camera instanceof PerspectiveCamera) {
-			camera.aspect = size.width / size.height;
-			camera.updateProjectionMatrix();
-		}
-	}, [camera, size]);
-
-	return null;
-}
+import { useState, useEffect, useRef } from "react";
+import homePNG from "../../public/navIcons/home.png";
+import aboutPNG from "../../public/navIcons/about.png";
+import skillsPNG from "../../public/navIcons/skills.png";
+import experiencesPNG from "../../public/navIcons/experiences.png";
+import blogPNG from "../../public/navIcons/blog.png";
+import contactPNG from "../../public/navIcons/contact.png";
 
 function CubeScene() {
 	const router = useRouter();
 	const currentPath = usePathname();
-	const [bgColor, setBgColor] = useState(new Color("#ffffff")); // Default color
+	const [bgColor, setBgColor] = useState(new Color("#ffffff"));
 	const plane = new PlaneGeometry(1, 1);
 
 	// Texture handling
@@ -125,7 +112,7 @@ function CubeScene() {
 		});
 	};
 
-	// Modified material creation
+	// material definitions
 	const materials = Object.entries(colors).reduce(
 		(acc, [key, colorSet]) => ({
 			...acc,
@@ -135,40 +122,32 @@ function CubeScene() {
 		{} as Record<string, MeshStandardMaterial>,
 	);
 
-	function CubeOutline({ size = 1, color = "#000000" }) {
+	function CubeOutline({ size = 1, color = "#000000", lineWidth = 5 }) {
 		const outline = new Object3D();
-		const edgesGeometry = new EdgesGeometry(new PlaneGeometry(size, size));
-		const lineMaterial = new LineBasicMaterial({ color, linewidth: 2 });
 
-		const positions: [number, number, number][] = [
-			[0, 0, size / 2],
-			[0, 0, -size / 2],
-			[size / 2, 0, 0],
-			[-size / 2, 0, 0],
-			[0, size / 2, 0],
-			[0, -size / 2, 0],
-		];
+		const positions = [
+			-0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5,
+			-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5,
+			0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5,
+		].map((coord) => coord * size);
 
-		const rotations: [number, number, number][] = [
-			[0, 0, 0],
-			[0, 0, 0],
-			[0, Math.PI / 2, 0],
-			[0, Math.PI / 2, 0],
-			[Math.PI / 2, 0, 0],
-			[Math.PI / 2, 0, 0],
-		];
+		const geometry = new LineGeometry();
+		geometry.setPositions(positions);
 
-		positions.forEach((position, index) => {
-			const line = new LineSegments(edgesGeometry, lineMaterial);
-			line.position.set(position[0], position[1], position[2]);
-			line.rotation.set(rotations[index][0], rotations[index][1], rotations[index][2]);
-			outline.add(line);
+		const material = new LineMaterial({
+			color: color,
+			linewidth: lineWidth,
 		});
+
+		material.resolution.set(window.innerWidth, window.innerHeight);
+
+		const line = new Line2(geometry, material);
+		outline.add(line);
 
 		return <primitive object={outline} />;
 	}
 
-	// Navigation
+	// navigation
 	function _onClick(e: ThreeEvent<MouseEvent>) {
 		e.stopPropagation();
 
@@ -265,9 +244,51 @@ function CubeScene() {
 					onPointerLeave={(e) => _onPointerLeave(e, e.object as Mesh)}
 				/>
 			))}
-			<CubeOutline size={1} color="#000000" />
-			<OrbitControls enablePan={true} enableZoom={false} />
+			<CubeOutline size={1} color="#000000" lineWidth={3} />
 		</Canvas>
+	);
+}
+
+type OrbitControlsImpl = typeof OrbitControls & {
+	object: Camera;
+	update: () => void;
+};
+
+function CameraAdjuster() {
+	const { camera, size } = useThree();
+	const orbitControlsRef = useRef<OrbitControlsImpl>(null);
+	const autoRotateRef = useRef(true);
+	const radius = 4;
+	const speed = 0.3;
+	useFrame(({ clock }) => {
+		if (camera instanceof PerspectiveCamera && autoRotateRef.current) {
+			const angle = clock.getElapsedTime() * speed;
+			camera.position.x = Math.sin(angle) * radius;
+			camera.position.z = Math.cos(angle) * radius;
+			camera.lookAt(0, 0, 0);
+
+			if (orbitControlsRef.current) {
+				orbitControlsRef.current.update();
+			}
+		}
+	});
+
+	useEffect(() => {
+		if (camera instanceof PerspectiveCamera) {
+			camera.aspect = size.width / size.height;
+			camera.updateProjectionMatrix();
+		}
+	}, [camera, size]);
+
+	return (
+		<OrbitControls
+			ref={orbitControlsRef as any}
+			enablePan={false}
+			enableZoom={false}
+			onStart={() => {
+				autoRotateRef.current = false;
+			}}
+		/>
 	);
 }
 
