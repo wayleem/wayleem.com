@@ -7,3 +7,11 @@ body,
 #__next {
 	@apply w-full h-full;
 }
+
+.btn {
+	transition: all 0.1s linear;
+}
+
+.btn:after {
+	transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
