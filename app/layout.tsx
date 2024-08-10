@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import CubeSceneWrapper from "./CubeSceneWrapper";
+import CubeSceneWrapper from "./components/CubeSceneWrapper";
+import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,8 @@ export default function RootLayout({
 			<body className={`${inter.className} w-screen h-screen overflow-hidden`}>
 				<div className="relative w-full h-full">
 					<CubeSceneWrapper />
-					<main className="absolute inset-0 w-full h-full z-10 pointer-events-none">{children}</main>
+					<Navbar />
+					<main className="mt-20 absolute inset-0 w-full h-full z-10 pointer-events-none">{children}</main>
 				</div>
 			</body>
 		</html>
