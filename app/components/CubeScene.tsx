@@ -102,7 +102,6 @@ function CubeScene() {
 			background: "#b1cdfc",
 		},
 	};
-
 	const createMaterial = (color: string, map: Texture) => {
 		return new MeshStandardMaterial({
 			color,
