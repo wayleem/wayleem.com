@@ -15,3 +15,54 @@ body,
 .btn:after {
 	transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+@layer base {
+	body {
+		@apply font-body text-base text-black leading-normal;
+	}
+}
+
+@layer components {
+	.title-1,
+	.title-2,
+	.title-3,
+	.title-4 {
+		@apply transition-all duration-300 font-title font-bold font-semibold;
+	}
+
+	.nav-link,
+	.button-text {
+		@apply transition-all duration-300 font-nav uppercase font-semibold;
+	}
+
+	.title-1 {
+		@apply text-4xl xl:text-5xl 4xl:text-7xl mb-6 leading-tight;
+	}
+	.title-2 {
+		@apply text-4xl xl:text-5xl 4xl:text-6xl mb-4 leading-tight;
+	}
+	.title-3 {
+		@apply text-4xl xl:text-5xl 4xl:text-5xl mb-3 leading-snug;
+	}
+	.title-4 {
+		@apply text-4xl xl:text-5xl 4xl:text-5xl mb-2 leading-snug;
+	}
+
+	.body-large {
+		@apply font-body text-lg leading-relaxed;
+	}
+	.body-normal {
+		@apply font-body text-base leading-normal;
+	}
+	.body-small {
+		@apply font-body text-sm leading-normal;
+	}
+
+	.nav-link {
+		@apply text-xs 2xl:text-sm tracking-wider;
+	}
+
+	.button-text {
+		@apply text-xs 2xl:text-sm 4xl:text-base tracking-wide;
+	}
+}
