@@ -1,0 +1,26 @@
+const courses = [
+	"Frontend Development",
+	"Backend Development",
+	"Full Stack Development",
+	"Software Development",
+	"Computer Networking",
+	"Network Administration",
+	"Cloud Computing",
+	"Information Management",
+	"Data Structures",
+	"Object Oriented Programming",
+	"Game Design",
+	"Database Design",
+	"Human-Computer Interaction",
+	"Linear Algebra",
+	"Discrete Mathematics",
+	"Probability & Statistics",
+	"Graph Theory",
+	"Data Analysis",
+	"Numerical Analysis",
+	"Applied Algebra",
+	"Calculus III",
+	"Project Management",
+];
+
+export default courses;
